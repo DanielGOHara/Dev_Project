@@ -1,0 +1,41 @@
+
+html {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+
+    background-color: darkgray;
+}
+
+.banner {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    height: 100px;
+    width: 100%;
+
+    background-color: gray;
+    border-bottom: medium solid black;
+}
+
+.array-container {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    position: relative;
+    height: 55em;
+    width: 95%;
+
+    background-color: gray;
+    border: medium solid black;
+}
+
+.array-bar {
+    width: 0.2%;
+    display: inline-block;
+    margin: 0 1px;
+    top: 100px;
+
+    background-color: black;
+}
