@@ -5,16 +5,17 @@ import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import {getValue} from "./SortingVisualizer";
 import {setNewValue} from './SortingVisualizer';
-import SortingVisualizer from "./SortingVisualizer";
 import './SortingStyles.css';
 
 const useStyles = makeStyles({
     root: {
-        color: 'black',
-        width: 270,
+        width: 265,
+    },
+    slider: {
+        selectionColor: 'black',
     },
     input: {
-        width: 42,
+        width: 50,
     },
 });
 
@@ -41,10 +42,10 @@ export default function InputSlider() {
             <Grid container spacing = {2} alignItems = "center">
                 <Grid item xs>
                     <Slider
+                        className = {classes.slider}
                         value = {typeof value === 'number' ? value : 0}
                         onChange = {handleSliderChange}
                         aria-labelledby = "input-slider"
-                        colorPrimary = 'black'
                         min = {20}
                         max = {300}
                     />

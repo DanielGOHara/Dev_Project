@@ -58,6 +58,42 @@ html {
     background-color: dimgray;
 }
 
+.banner #select-button {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    height: 5.056em;
+    width: 7em;
+
+    font-family: Arial;
+    font-size: large;
+    font-weight: bold;
+
+    background-color: gray;
+    border: medium solid black;
+    border-radius: 5px;
+}
+
+.banner #select-button:hover {
+    background-color: dimgray;
+}
+
+.banner #selected-container {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    height: 3.6114em;
+    width: 7em;
+
+    font-family: Arial;
+    font-size: large;
+    font-weight: bold;
+
+    background-color: gray;
+    border: medium solid black;
+    border-radius: 5px;
+}
+
 .banner #new-array {
     padding: 10px;
     margin: 10px;
