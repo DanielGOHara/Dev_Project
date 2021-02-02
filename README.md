@@ -2,6 +2,6 @@
 
 Final Year Development Project
 
-Languages: HTML, CSS, Javascript
+Languages: HTML, CSS, Javascript | Frameworks: React.js
 
 Computing Algorithm Visualiser - Designed to visualise the way sorting algorithms work to aid in learning. 
