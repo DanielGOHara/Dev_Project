@@ -18,12 +18,30 @@ export default class SortingVisualizer extends React.Component {
             this.resetArray();
         };
 
-        /* Resets the chart array with a set of new values */
+        /* Resets the chart array with a set of new values, also inserts one 100 value */
 
         resetArray() {
             const array = [];
-            for (let i = 0; i < getValue(); i++) {
-                array.push(randomInt(5, 100));
+            let index = randomInt(20, value)
+            let count = 0;
+            for(let i = 0; i < value; i++) {
+                if(index === i) {
+                    array.push(100);
+                } else {
+                    array.push(randomInt(5, 100));
+                }
+            }
+
+            /* Checks to ensure at least one value is 100 */
+
+            for(let i = 0; i < array.length; i++) {
+                if(array[i] === 100) {
+                    count++;
+                }
+            }
+            if(count === 0) {
+                index = randomInt(0, array.length - 1);
+                array[index] = 100;
             }
             this.setState({array});
         };
@@ -58,11 +76,12 @@ export default class SortingVisualizer extends React.Component {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    function getValue() {
+    export function getValue() {
         return value;
     }
 
     export function setNewValue(newValue) {
         value = newValue;
     }
+
 
