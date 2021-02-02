@@ -78,29 +78,34 @@ html {
     background-color: dimgray;
 }
 
-.slider {
+/* Slider Elements ------------------------------------------------------------------------------------------------- */
+
+.slider-container {
     padding: 10px;
     margin: 10px;
     display: inline-block;
-    height: 4.063em;
-    width: 22em;
+    height: 3.6115em;
+    width: 15em;
+
+    font-family: Arial;
+    font-size: large;
+    font-weight: bold;
 
     background-color: gray;
     border: medium solid black;
     border-radius: 5px;
-}
-
-.slider #slider-value {
 
 }
+
+/* Array/Chart Elements -------------------------------------------------------------------------------------------- */
 
 .array-container {
     padding: 10px;
     margin: 10px;
-    display: block;
-    position: relative;
+    display: inline-block;
+    position: center;
     height: 55em;
-    width: 95%;
+    width: 80%;
 
     background-color: gray;
     border: medium solid black;
