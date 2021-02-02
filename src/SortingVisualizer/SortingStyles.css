@@ -12,17 +12,92 @@ html {
 .banner {
     padding-bottom: 10px;
     margin-bottom: 10px;
-    height: 100px;
+    display: inline-flex;
+    height: 10%;
     width: 100%;
+    justify-content: center;
 
     background-color: gray;
     border-bottom: medium solid black;
 }
 
-.array-container {
+.banner #title {
     padding: 10px;
     margin: 10px;
     display: inline-block;
+    height: 5em;
+    width: 5em;
+    justify-content: center;
+
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+
+    background-color: gray;
+    border: medium solid black;
+    border-radius: 5px;
+}
+
+.banner #sort-button {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    height: 5.056em;
+    width: 5.056em;
+
+    font-family: Arial;
+    font-size: large;
+    font-weight: bold;
+
+    background-color: gray;
+    border: medium solid black;
+    border-radius: 5px;
+}
+
+.banner #sort-button:hover {
+    background-color: dimgray;
+}
+
+.banner #new-array {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    height: 5.056em;
+    width: 6em;
+
+    font-family: Arial;
+    font-size: large;
+    font-weight: bold;
+
+    background-color: gray;
+    border: medium solid black;
+    border-radius: 5px;
+}
+
+.banner #new-array:hover {
+    background-color: dimgray;
+}
+
+.slider {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    height: 4.063em;
+    width: 22em;
+
+    background-color: gray;
+    border: medium solid black;
+    border-radius: 5px;
+}
+
+.slider #slider-value {
+
+}
+
+.array-container {
+    padding: 10px;
+    margin: 10px;
+    display: block;
     position: relative;
     height: 55em;
     width: 95%;
