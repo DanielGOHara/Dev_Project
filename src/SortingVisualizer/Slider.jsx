@@ -47,8 +47,8 @@ export default function InputSlider() {
         if(value < 20) {
             setValue(20);
             setNewValue(value);
-        } else if(value > 300) {
-            setValue(300);
+        } else if(value > 175) {
+            setValue(175);
             setNewValue(value);
         } else {
             setValue(value);
@@ -70,7 +70,7 @@ export default function InputSlider() {
                         onChange = {handleSliderChange}
                         aria-labelledby = "input-slider"
                         min = {20}
-                        max = {300}
+                        max = {175}
                     />
                 </Grid>
                 <Grid item>
@@ -84,7 +84,7 @@ export default function InputSlider() {
                         inputProps = {{
                             step: 1,
                             min: 20,
-                            max: 300,
+                            max: 175,
                             type: 'number',
                             'aria-labelledby': 'input-slider',
                         }}

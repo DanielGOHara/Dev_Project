@@ -2,7 +2,7 @@ import React from 'react';
 import './SortingStyles.css';
 import Slider from './Slider';
 
-let arrayMax = 300, arrayMin = 20;
+let arrayMax = 29, arrayMin = 20;
 let selectedAlgo = "QuickSort";
 
 export default class SortingVisualizer extends React.Component {
@@ -54,6 +54,25 @@ export default class SortingVisualizer extends React.Component {
 
         render() {
             const {array} = this.state;
+            const numWidth =
+                array.length < 30 ? 2.55 :
+                    array.length < 40 ? 1.75 :
+                        array.length < 50 ? 1.34 :
+                            array.length < 75 ? 0.75 :
+                                array.length < 100 ? 0.51:
+                                    array.length < 150 ? 0.37:
+                                        array.length < 176 ? 0.36 : 2;
+            const width = `${numWidth}%`;
+            const numMargin =
+                array.length < 30 ? 4.5 :
+                    array.length < 40 ? 4 :
+                        array.length < 50 ? 3.5 :
+                            array.length < 75 ? 3 :
+                                array.length < 100 ? 2.5:
+                                    array.length < 150 ? 1.5:
+                                        array.length < 176 ? 1 : 2;
+            const margin = `${numMargin}px`;
+            const color = array.length <= 49 ? "white": "transparent";
             return (
                 <>
                     <div className = "banner">
@@ -68,7 +87,7 @@ export default class SortingVisualizer extends React.Component {
                     </div>
                     <div className = "array-container">
                         {array.map((value, idx) => (
-                            <div className = "array-bar" key = {idx} style = {{height: `${value}%`}}/>
+                            <div className = "array-bar" value = {value} key = {idx} style = {{height: `${value}%`, width: width, marginLeft: margin, marginRight: margin, color: color}}>{value}</div>
                         ))}
                     </div>
                 </>
@@ -89,8 +108,8 @@ export default class SortingVisualizer extends React.Component {
     export function setNewValue(newValue) {
         if(newValue < arrayMin) {
             arrayMax = arrayMin;
-        } else if(newValue > 300) {
-            arrayMax = 300;
+        } else if(newValue > 175) {
+            arrayMax = 175;
         } else {
             arrayMax = newValue;
         }
