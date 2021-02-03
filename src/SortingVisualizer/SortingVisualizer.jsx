@@ -2,7 +2,7 @@ import React from 'react';
 import './SortingStyles.css';
 import Slider from './Slider';
 
-let value = 300;
+let arrayMax = 300, arrayMin = 20;
 let selectedAlgo = "QuickSort";
 
 export default class SortingVisualizer extends React.Component {
@@ -25,9 +25,9 @@ export default class SortingVisualizer extends React.Component {
 
         resetArray() {
             const array = [];
-            let index = randomInt(20, value)
+            let index = randomInt(arrayMin, arrayMax)
             let count = 0;
-            for(let i = 0; i < value; i++) {
+            for(let i = 0; i < arrayMax; i++) {
                 if(index === i) {
                     array.push(100);
                 } else {
@@ -63,7 +63,7 @@ export default class SortingVisualizer extends React.Component {
                         <label id = "selected-container">Currently Selected: <label id = "selected-algorithm">{selectedAlgo}</label></label>
                         <button onClick = {() => this.resetArray()} id = "new-array">Generate New Array</button>
                         <div className = "slider-container">
-                            <label>Array Size: </label><p><Slider>{Slider}</Slider></p>
+                            <label>Array Size: </label><Slider/>
                         </div>
                     </div>
                     <div className = "array-container">
@@ -83,11 +83,17 @@ export default class SortingVisualizer extends React.Component {
     }
 
     export function getValue() {
-        return value;
+        return arrayMax;
     }
 
     export function setNewValue(newValue) {
-        value = newValue;
+        if(newValue < arrayMin) {
+            arrayMax = arrayMin;
+        } else if(newValue > arrayMax) {
+            arrayMax = 300;
+        } else {
+            arrayMax = newValue;
+        }
     }
 
 

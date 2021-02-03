@@ -9,6 +9,7 @@ import './SortingStyles.css';
 
 const useStyles = makeStyles({
     root: {
+        padding: 10,
         width: 265,
     },
     thumb: {
@@ -29,9 +30,10 @@ const useStyles = makeStyles({
 
 export default function InputSlider() {
     const classes = useStyles();
-    const [value, setValue] = React.useState(getValue);
+    let [value, setValue] = React.useState(getValue);
 
     const handleSliderChange = (event, newValue) => {
+        console.log(newValue);
         setValue(newValue);
         setNewValue(newValue);
     };
@@ -42,7 +44,16 @@ export default function InputSlider() {
     };
 
     const handleBlur = () => {
-        setNewValue(value);
+        if(value < 20) {
+            setValue(20);
+            setNewValue(value);
+        } else if(value > 300) {
+            setValue(300);
+            setNewValue(value);
+        } else {
+            setValue(value);
+            setNewValue(value);
+        }
     };
 
     return (
