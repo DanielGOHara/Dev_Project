@@ -2,8 +2,9 @@ import React from 'react';
 import './SortingStyles.css';
 import Slider from './Slider';
 
-let arrayMax = 29, arrayMin = 20;
+let arrayMax = 29, arrayMin = 20, value = arrayMax;
 let selectedAlgo = "QuickSort";
+let holdingAlgo = "QuickSort";
 
 export default class SortingVisualizer extends React.Component {
         constructor(props) {
@@ -11,7 +12,6 @@ export default class SortingVisualizer extends React.Component {
             this.state = {
                 array: [],
                 String: "",
-
             };
         };
 
@@ -21,7 +21,7 @@ export default class SortingVisualizer extends React.Component {
             this.resetArray();
         };
 
-        /* Resets the chart array with a set of new values, also inserts one 100 value */
+        /* Resets the chart array with a set of new random values, also inserts one 100 value */
 
         resetArray() {
             const array = [];
@@ -34,7 +34,9 @@ export default class SortingVisualizer extends React.Component {
                     array.push(randomInt(5, 100));
                 }
             }
+
             /* Checks to ensure at least one value is 100 */
+
             for(let i = 0; i < array.length; i++) {
                 if(array[i] === 100) {
                     count++;
@@ -47,13 +49,18 @@ export default class SortingVisualizer extends React.Component {
             this.setState({array});
         };
 
-        updateAlgo(newAlgo) {
-            selectedAlgo = newAlgo;
+        /* Updates the selectedAlgo variable */
+
+        updateAlgo() {
+            selectedAlgo = getHoldingAlgo();
             this.setState({selectedAlgo});
         }
 
         render() {
             const {array} = this.state;
+
+            /* Sets the width depending on the arrays length */
+
             const numWidth =
                 array.length < 30 ? 2.55 :
                     array.length < 40 ? 1.75 :
@@ -63,6 +70,9 @@ export default class SortingVisualizer extends React.Component {
                                     array.length < 150 ? 0.37:
                                         array.length < 176 ? 0.36 : 2;
             const width = `${numWidth}%`;
+
+            /* Sets the margin depending on the arrays length */
+
             const numMargin =
                 array.length < 30 ? 4.5 :
                     array.length < 40 ? 4 :
@@ -72,17 +82,21 @@ export default class SortingVisualizer extends React.Component {
                                     array.length < 150 ? 1.5:
                                         array.length < 176 ? 1 : 2;
             const margin = `${numMargin}px`;
-            const color = array.length <= 49 ? "white": "transparent";
+
+            /* Reveals the bars value depending on the arrays length */
+
+            const color = array.length < 30 ? "white": "transparent";
             return (
                 <>
-                    <div className = "banner">
+                    <div className = "header">
                         <label id = "title">Daniel's Sorting Algorithm Visualizer</label>
-                        <button onClick = {() => this.updateAlgo("HeapSort")} id = "sort-button">Sort</button>
-                        <button id = "select-button">Select Algorithm</button>
+                        <button id = "sort-button">Sort</button>
+                        <button onClick = {() => this.updateAlgo()} id = "select-button">Select Algorithm</button>
                         <label id = "selected-container">Currently Selected: <label id = "selected-algorithm">{selectedAlgo}</label></label>
                         <button onClick = {() => this.resetArray()} id = "new-array">Generate New Array</button>
                         <div className = "slider-container">
-                            <label>Array Size: </label><Slider/>
+                            <label>ArraySize: </label>
+                            <Slider/>
                         </div>
                     </div>
                     <div className = "array-container">
@@ -90,6 +104,21 @@ export default class SortingVisualizer extends React.Component {
                             <div className = "array-bar" value = {value} key = {idx} style = {{height: `${value}%`, width: width, marginLeft: margin, marginRight: margin, color: color}}>{value}</div>
                         ))}
                     </div>
+                    <div className = "footer">
+                        <label id = "footer-title">Algorithms: </label>
+                        <p id = "footer-p">
+                            <button onClick = {() => setHoldingAlgo("MergeSort")} id = "mergeSort">Merge Sort</button>
+                            <button onClick = {() => setHoldingAlgo("QuickSort")} id = "quickSort">Quick Sort</button>
+                            <button onClick = {() => setHoldingAlgo("HeapSort")} id = "heapSort">Heap Sort</button>
+                            <button onClick = {() => setHoldingAlgo("TreeSort")} id = "treeSort">Tree Sort</button>
+                            <button onClick = {() => setHoldingAlgo("BlockSort")} id = "blockSort">Block Sort</button>
+                            <button onClick = {() => setHoldingAlgo("TimSort")} id = "timSort">Tim Sort</button>
+                            <button onClick = {() => setHoldingAlgo("ShellSort")} id = "shellSort">Shell Sort</button>
+                            <button onClick = {() => setHoldingAlgo("QuadSort")} id = "quadSort">Quad Sort</button>
+                            <button onClick = {() => setHoldingAlgo("CubeSort")} id = "cubeSort">Cube Sort</button>
+                        </p>
+                    </div>
+                    <label className = "project-details">Daniel O'Hara P2435725 De MontFort University Final Year Project 2021</label>
                 </>
             );
         }
@@ -101,9 +130,21 @@ export default class SortingVisualizer extends React.Component {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
+    function setHoldingAlgo (newAlgo) {
+        holdingAlgo = newAlgo;
+    }
+
+    function getHoldingAlgo () {
+        return holdingAlgo;
+    }
+
+    /* Returns the arrayMax variable */
+
     export function getValue() {
         return arrayMax;
     }
+
+    /* Checks incoming variable is within the array size limits and applies it */
 
     export function setNewValue(newValue) {
         if(newValue < arrayMin) {

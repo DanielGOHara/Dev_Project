@@ -1,7 +1,7 @@
 
 html {
     width: 100%;
-    height: auto;
+    height: 100%;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -9,7 +9,9 @@ html {
     background-color: darkgray;
 }
 
-.banner {
+/* Header elements ------------------------------------------------------------------------------------------------- */
+
+.header {
     padding-bottom: 10px;
     margin-bottom: 10px;
     display: inline-flex;
@@ -21,7 +23,7 @@ html {
     border-bottom: medium solid black;
 }
 
-.banner #title {
+.header #title {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -38,7 +40,7 @@ html {
     border-radius: 5px;
 }
 
-.banner #sort-button {
+.header #sort-button {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -54,11 +56,11 @@ html {
     border-radius: 5px;
 }
 
-.banner #sort-button:hover {
+.header #sort-button:hover {
     background-color: dimgray;
 }
 
-.banner #select-button {
+.header #select-button {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -74,11 +76,11 @@ html {
     border-radius: 5px;
 }
 
-.banner #select-button:hover {
+.header #select-button:hover {
     background-color: dimgray;
 }
 
-.banner #selected-container {
+.header #selected-container {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -94,7 +96,7 @@ html {
     border-radius: 5px;
 }
 
-.banner #new-array {
+.header #new-array {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -110,7 +112,7 @@ html {
     border-radius: 5px;
 }
 
-.banner #new-array:hover {
+.header #new-array:hover {
     background-color: dimgray;
 }
 
@@ -147,7 +149,62 @@ html {
 
 .array-bar {
     display: inline-block;
-    top: 100px;
 
     background-color: black;
+}
+
+/* Footer elements ------------------------------------------------------------------------------------------------- */
+
+.footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+
+    background-color: gray;
+    border-top: medium solid black;
+    border-bottom: medium solid black;
+}
+
+.footer #footer-title {
+    font-family: Arial;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.footer #footer-p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.footer #mergeSort, .footer #quickSort, .footer #heapSort, .footer #treeSort, .footer #blockSort,
+.footer #timSort, .footer #shellSort, .footer #quadSort, .footer #cubeSort {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    height: 3.6114em;
+    width: 5em;
+
+    font-family: Arial;
+    font-size: large;
+    font-weight: bold;
+
+    background-color: gray;
+    border: medium solid black;
+    border-radius: 5px;
+}
+
+.footer #mergeSort:hover, .footer #quickSort:hover, .footer #heapSort:hover, .footer #treeSort:hover,
+.footer #blockSort:hover, .footer #timSort:hover, .footer #shellSort:hover, .footer #quadSort:hover,
+.footer #cubeSort:hover {
+    background-color: dimgray;
+}
+
+.project-details {
+    font-family: Arial;
+    font-size: large;
+    font-weight: bold;
 }
