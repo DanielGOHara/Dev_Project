@@ -89,7 +89,7 @@ export default class SortingVisualizer extends React.Component {
     export function setNewValue(newValue) {
         if(newValue < arrayMin) {
             arrayMax = arrayMin;
-        } else if(newValue > arrayMax) {
+        } else if(newValue > 300) {
             arrayMax = 300;
         } else {
             arrayMax = newValue;
