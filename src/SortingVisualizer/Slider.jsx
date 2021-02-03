@@ -33,7 +33,6 @@ export default function InputSlider() {
     let [value, setValue] = React.useState(getValue);
 
     const handleSliderChange = (event, newValue) => {
-        console.log(newValue);
         setValue(newValue);
         setNewValue(newValue);
     };

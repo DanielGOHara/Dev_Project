@@ -1,8 +1,9 @@
 import React from 'react';
 import './SortingStyles.css';
 import Slider from './Slider';
+import sortedAlgorithms from'./SortingAlgorithms/sortingAlgorithms';
 
-let arrayMax = 29, arrayMin = 20, value = arrayMax;
+let arrayMax = 100, arrayMin = 20, tempMax = arrayMax;
 let selectedAlgo = "QuickSort";
 let holdingAlgo = "QuickSort";
 
@@ -19,6 +20,7 @@ export default class SortingVisualizer extends React.Component {
 
         componentDidMount() {
             this.resetArray();
+            this.timer();
         };
 
         /* Resets the chart array with a set of new random values, also inserts one 100 value */
@@ -54,6 +56,17 @@ export default class SortingVisualizer extends React.Component {
         updateAlgo() {
             selectedAlgo = getHoldingAlgo();
             this.setState({selectedAlgo});
+        }
+
+        timer() {
+            setInterval(() => this.checkMax(), 5);
+        }
+
+        checkMax() {
+            if(arrayMax !== tempMax) {
+                arrayMax = tempMax;
+                this.resetArray();
+            }
         }
 
         render() {
@@ -148,11 +161,11 @@ export default class SortingVisualizer extends React.Component {
 
     export function setNewValue(newValue) {
         if(newValue < arrayMin) {
-            arrayMax = arrayMin;
+             tempMax = arrayMin;
         } else if(newValue > 175) {
-            arrayMax = 175;
+            tempMax = 175;
         } else {
-            arrayMax = newValue;
+            tempMax = newValue;
         }
     }
 
