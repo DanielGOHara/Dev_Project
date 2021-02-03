@@ -54,7 +54,6 @@ export default class SortingVisualizer extends React.Component {
 
         render() {
             const {array} = this.state;
-
             return (
                 <>
                     <div className = "banner">
@@ -64,8 +63,7 @@ export default class SortingVisualizer extends React.Component {
                         <label id = "selected-container">Currently Selected: <label id = "selected-algorithm">{selectedAlgo}</label></label>
                         <button onClick = {() => this.resetArray()} id = "new-array">Generate New Array</button>
                         <div className = "slider-container">
-                            <label>Array Size: </label><span id = "slider-value"/>
-                            <p><Slider>{Slider}</Slider></p>
+                            <label>Array Size: </label><p><Slider>{Slider}</Slider></p>
                         </div>
                     </div>
                     <div className = "array-container">

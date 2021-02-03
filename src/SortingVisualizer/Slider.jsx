@@ -11,10 +11,18 @@ const useStyles = makeStyles({
     root: {
         width: 265,
     },
-    slider: {
-        selectionColor: 'black',
+    thumb: {
+        background: "black",
+    },
+    rail: {
+        background: "black",
+    },
+    track: {
+        background: "black",
     },
     input: {
+        fontFamily: 'fantasy',
+        fontSize: 'large',
         width: 50,
     },
 });
@@ -42,7 +50,11 @@ export default function InputSlider() {
             <Grid container spacing = {2} alignItems = "center">
                 <Grid item xs>
                     <Slider
-                        className = {classes.slider}
+                        classes = {{
+                            thumb: classes.thumb,
+                            rail: classes.rail,
+                            track: classes.track,
+                        }}
                         value = {typeof value === 'number' ? value : 0}
                         onChange = {handleSliderChange}
                         aria-labelledby = "input-slider"
@@ -57,6 +69,7 @@ export default function InputSlider() {
                         margin = "dense"
                         onChange = {handleInputChange}
                         onBlur = {handleBlur}
+                        disableUnderline = {true}
                         inputProps = {{
                             step: 1,
                             min: 20,
