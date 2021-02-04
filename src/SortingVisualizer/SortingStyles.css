@@ -56,10 +56,6 @@ html {
     border-radius: 5px;
 }
 
-.header #sort-button:hover {
-    background-color: dimgray;
-}
-
 .header #select-button {
     padding: 10px;
     margin: 10px;
@@ -74,10 +70,6 @@ html {
     background-color: gray;
     border: medium solid black;
     border-radius: 5px;
-}
-
-.header #select-button:hover {
-    background-color: dimgray;
 }
 
 .header #selected-container {
@@ -112,8 +104,12 @@ html {
     border-radius: 5px;
 }
 
-.header #new-array:hover {
+.header #sort-button:hover, .header #select-button:hover, .header #new-array:hover {
     background-color: dimgray;
+}
+
+.header #sort-button:focus, .header #select-button:focus, .header #new-array:focus {
+    outline: none;
 }
 
 /* Slider Elements ------------------------------------------------------------------------------------------------- */
@@ -177,7 +173,7 @@ html {
 
 .footer #footer-p {
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
 }
 
 .footer #mergeSort, .footer #quickSort, .footer #heapSort, .footer #treeSort, .footer #blockSort,
@@ -201,6 +197,18 @@ html {
 .footer #blockSort:hover, .footer #timSort:hover, .footer #shellSort:hover, .footer #quadSort:hover,
 .footer #cubeSort:hover {
     background-color: dimgray;
+}
+
+.footer #mergeSort:focus, .footer #quickSort:focus, .footer #heapSort:focus, .footer #treeSort:focus,
+.footer #blockSort:focus, .footer #timSort:focus, .footer #shellSort:focus, .footer #quadSort:focus,
+.footer #cubeSort:focus {
+    outline: none;
+}
+
+.footer #footer-details {
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
 }
 
 .project-details {

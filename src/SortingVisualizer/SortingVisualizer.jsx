@@ -5,7 +5,6 @@ import sortedAlgorithms from'./SortingAlgorithms/sortingAlgorithms';
 
 let arrayMax = 100, arrayMin = 20, tempMax = arrayMax;
 let selectedAlgo = "QuickSort";
-let holdingAlgo = "QuickSort";
 
 export default class SortingVisualizer extends React.Component {
         constructor(props) {
@@ -53,14 +52,18 @@ export default class SortingVisualizer extends React.Component {
 
         /* Updates the selectedAlgo variable */
 
-        updateAlgo() {
-            selectedAlgo = getHoldingAlgo();
+        updateAlgo(newAlgo) {
+            selectedAlgo = newAlgo;
             this.setState({selectedAlgo});
         }
+
+        /* Timer interval to consistently check in the updated value from the slider */
 
         timer() {
             setInterval(() => this.checkMax(), 5);
         }
+
+        /* Compares arrayMax and tempMax, if they are different arrayMax is set to tempMax and resetArray is called */
 
         checkMax() {
             if(arrayMax !== tempMax) {
@@ -120,15 +123,15 @@ export default class SortingVisualizer extends React.Component {
                     <div className = "footer">
                         <label id = "footer-title">Algorithms: </label>
                         <p id = "footer-p">
-                            <button onClick = {() => setHoldingAlgo("MergeSort")} id = "mergeSort">Merge Sort</button>
-                            <button onClick = {() => setHoldingAlgo("QuickSort")} id = "quickSort">Quick Sort</button>
-                            <button onClick = {() => setHoldingAlgo("HeapSort")} id = "heapSort">Heap Sort</button>
-                            <button onClick = {() => setHoldingAlgo("TreeSort")} id = "treeSort">Tree Sort</button>
-                            <button onClick = {() => setHoldingAlgo("BlockSort")} id = "blockSort">Block Sort</button>
-                            <button onClick = {() => setHoldingAlgo("TimSort")} id = "timSort">Tim Sort</button>
-                            <button onClick = {() => setHoldingAlgo("ShellSort")} id = "shellSort">Shell Sort</button>
-                            <button onClick = {() => setHoldingAlgo("QuadSort")} id = "quadSort">Quad Sort</button>
-                            <button onClick = {() => setHoldingAlgo("CubeSort")} id = "cubeSort">Cube Sort</button>
+                            <button onClick = {() => this.updateAlgo("MergeSort")} id = "mergeSort">Merge Sort</button>
+                            <button onClick = {() => this.updateAlgo("QuickSort")} id = "quickSort">Quick Sort</button>
+                            <button onClick = {() => this.updateAlgo("HeapSort")} id = "heapSort">Heap Sort</button>
+                            <button onClick = {() => this.updateAlgo("TreeSort")} id = "treeSort">Tree Sort</button>
+                            <button onClick = {() => this.updateAlgo("BlockSort")} id = "blockSort">Block Sort</button>
+                            <button onClick = {() => this.updateAlgo("TimSort")} id = "timSort">Tim Sort</button>
+                            <button onClick = {() => this.updateAlgo("ShellSort")} id = "shellSort">Shell Sort</button>
+                            <button onClick = {() => this.updateAlgo("QuadSort")} id = "quadSort">Quad Sort</button>
+                            <button onClick = {() => this.updateAlgo("CubeSort")} id = "cubeSort">Cube Sort</button>
                         </p>
                     </div>
                     <label className = "project-details">Daniel O'Hara P2435725 De MontFort University Final Year Project 2021</label>
@@ -141,14 +144,6 @@ export default class SortingVisualizer extends React.Component {
 
     function randomInt (min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
-    }
-
-    function setHoldingAlgo (newAlgo) {
-        holdingAlgo = newAlgo;
-    }
-
-    function getHoldingAlgo () {
-        return holdingAlgo;
     }
 
     /* Returns the arrayMax variable */
