@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
-import {getValue} from "./SortingVisualizer";
-import {setNewValue} from './SortingVisualizer';
+import { getValue } from "./SortingVisualizer";
+import { setNewValue } from './SortingVisualizer';
 import './SortingStyles.css';
 
 const useStyles = makeStyles({

@@ -13,14 +13,14 @@ export default class SortingVisualizer extends React.Component {
                 array: [],
                 String: "",
             };
-        };
+        }
 
         /* When the app is opened this is called */
 
         componentDidMount() {
             this.resetArray();
             this.timer();
-        };
+        }
 
         /* Resets the chart array with a set of new random values, also inserts one 100 value */
 
@@ -48,7 +48,7 @@ export default class SortingVisualizer extends React.Component {
                 array[index] = 100;
             }
             this.setState({array});
-        };
+        }
 
         /* Updates the selectedAlgo variable */
 
@@ -70,6 +70,15 @@ export default class SortingVisualizer extends React.Component {
                 arrayMax = tempMax;
                 this.resetArray();
             }
+        }
+
+        /* Sorts algorithm */
+
+        sort() {
+            const sortedArray = this.state.array.slice().sort((a, b) => a - b);
+            const stateArray = sortedAlgorithms(selectedAlgo, this.state.array);
+            console.log(arraysAreEqual(sortedArray, stateArray));
+            console.log(sortedArray);
         }
 
         render() {
@@ -105,8 +114,8 @@ export default class SortingVisualizer extends React.Component {
             return (
                 <>
                     <div className = "header">
-                        <label id = "title">Daniel's Sorting Algorithm Visualizer</label>
-                        <button id = "sort-button">Sort</button>
+                        <label id = "title">Daniel's Sorting Algorithm Visualiser</label>
+                        <button onClick = {() => this.sort()} id = "sort-button">Sort</button>
                         <button onClick = {() => this.updateAlgo()} id = "select-button">Select Algorithm</button>
                         <label id = "selected-container">Currently Selected: <label id = "selected-algorithm">{selectedAlgo}</label></label>
                         <button onClick = {() => this.resetArray()} id = "new-array">Generate New Array</button>
@@ -146,6 +155,21 @@ export default class SortingVisualizer extends React.Component {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
+    /* Compares the javascript sorted array to the algorithm sorted array */
+
+    function arraysAreEqual(sortedArray, stateArray) {
+        if(sortedArray.length !== stateArray.length) {
+            return false;
+        } else {
+            for(let i = 0; i < sortedArray.length; i++) {
+                if(sortedArray[i] !== stateArray[i]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     /* Returns the arrayMax variable */
 
     export function getValue() {
@@ -163,6 +187,7 @@ export default class SortingVisualizer extends React.Component {
             tempMax = newValue;
         }
     }
+
 
 
 
