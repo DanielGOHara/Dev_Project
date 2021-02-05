@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
-import { getArraySize, setArraySize } from "./SortingVisualizer";
+import { getSpeed, setSpeed } from './SortingVisualizer';
 import './SortingStyles.css';
 
 /* Styling for the slider and input text-box */
@@ -11,7 +11,7 @@ import './SortingStyles.css';
 const useStyles = makeStyles({
     root: {
         padding: 10,
-        width: 265,
+        width: 155,
     },
     thumb: {
         background: "black",
@@ -29,38 +29,38 @@ const useStyles = makeStyles({
     },
 });
 
-/* Function to create a slider and text-box to control the size of the array */
+/* Function to create a slider and text-box to control the speed of sorting */
 
-export default function InputSlider() {
+export default function InputSpeed() {
     const classes = useStyles();
-    let [value, setValue] = React.useState(getArraySize);
+    let [value, setValue] = React.useState(getSpeed);
 
     /* Updates state and value in Sorting Visualizer if the user moves the slider */
 
     const handleSliderChange = (event, newValue) => {
         setValue(newValue);
-        setArraySize(newValue);
+        setSpeed(newValue);
     };
 
     /* Updates state and value in SortingVisualizer if the user enters whats in the text-box */
 
     const handleInputChange = (event) => {
         setValue(event.target.value === '' ? '' : Number(event.target.value));
-        setArraySize(value);
+        setSpeed(value);
     };
 
     /* Updates state and value in SortingVisualizer if the user press off the text-box */
 
     const handleBlur = () => {
-        if(value < 20) {
-            setValue(20);
-            setArraySize(value);
-        } else if(value > 175) {
-            setValue(175);
-            setArraySize(value);
+        if(value < 1) {
+            setValue(1);
+            setSpeed(value);
+        } else if(value > 15) {
+            setValue(15);
+            setSpeed(value);
         } else {
             setValue(value);
-            setArraySize(value);
+            setSpeed(value);
         }
     };
 
@@ -77,8 +77,8 @@ export default function InputSlider() {
                         value = {typeof value === 'number' ? value : 0}
                         onChange = {handleSliderChange}
                         aria-labelledby = "input-slider"
-                        min = {20}
-                        max = {175}
+                        min = {1}
+                        max = {15}
                     />
                 </Grid>
                 <Grid item>
@@ -91,8 +91,8 @@ export default function InputSlider() {
                         disableUnderline = {true}
                         inputProps = {{
                             step: 1,
-                            min: 20,
-                            max: 175,
+                            min: 1,
+                            max: 15,
                             type: 'number',
                             'aria-labelledby': 'input-slider',
                         }}

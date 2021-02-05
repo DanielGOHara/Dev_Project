@@ -40,6 +40,23 @@ html {
     border-radius: 5px;
 }
 
+.speed-container {
+    padding: 10px;
+    margin: 10px;
+    height: 4.0625em;
+    width: 10em;
+
+    background-color: gray;
+    border: medium solid black;
+    border-radius: 5px;
+}
+
+.speed-container #speed-title {
+    font-family: Arial;
+    font-size: large;
+    font-weight: bold;
+}
+
 .header #sort-button {
     padding: 10px;
     margin: 10px;

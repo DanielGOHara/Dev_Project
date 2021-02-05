@@ -1,10 +1,12 @@
 import React from 'react';
 import './SortingStyles.css';
 import Slider from './Slider';
-import sortedAlgorithms from'./SortingAlgorithms/sortingAlgorithms';
+import Speed from './Speed';
+import { getSortedAlgo } from "./SortingAlgorithms/sortingAlgorithms";
 
-let arrayMax = 100, arrayMin = 20, tempMax = arrayMax;
-let selectedAlgo = "QuickSort";
+let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 10, tempSpeed = animationSpeed;
+let selectedAlgo = "MergeSort";
+let sortedArray = [];
 
 export default class SortingVisualizer extends React.Component {
         constructor(props) {
@@ -20,6 +22,9 @@ export default class SortingVisualizer extends React.Component {
         componentDidMount() {
             this.resetArray();
             this.timer();
+
+            // eslint-disable-next-line
+            sortedArray = this.state.array.slice().sort((a, b) => a - b);
         }
 
         /* Resets the chart array with a set of new random values, also inserts one 100 value */
@@ -70,15 +75,41 @@ export default class SortingVisualizer extends React.Component {
                 arrayMax = tempMax;
                 this.resetArray();
             }
+            if(animationSpeed !== tempSpeed) {
+                animationSpeed = tempSpeed;
+            }
         }
 
-        /* Sorts algorithm */
+        /* Sorts algorithm, checks if a sorted array is already on screen and resets it if that is the case */
 
         sort() {
-            const sortedArray = this.state.array.slice().sort((a, b) => a - b);
-            const stateArray = sortedAlgorithms(selectedAlgo, this.state.array);
-            console.log(arraysAreEqual(sortedArray, stateArray));
-            console.log(sortedArray);
+            this.resetArray();
+            this.animateSorting(getSortedAlgo(selectedAlgo, this.state.array));
+        }
+
+        /* Changes the bar colours depending  */
+
+        animateSorting(animations) {
+            for(let i = 0; i < animations.length; i++) {
+                const arrayBars = document.getElementsByClassName('array-bar');
+                const isColourChange = i % 3 !== 2;
+                if(isColourChange) {
+                    const [barOne, barTwo] = animations[i];
+                    const barOneStyle = arrayBars[barOne].style;
+                    const barTwoStyle = arrayBars[barTwo].style;
+                    const colour = i % 3 === 0 ? 'red' : 'black';
+                    setTimeout(() => {
+                        barOneStyle.backgroundColor = colour;
+                        barTwoStyle.backgroundColor = colour;
+                    }, i * animationSpeed);
+                } else {
+                    setTimeout(() => {
+                        const [barOne, newHeight] = animations[i];
+                        const barOneStyle = arrayBars[barOne].style;
+                        barOneStyle.height = `${newHeight}%`;
+                    }, i * animationSpeed);
+                }
+            }
         }
 
         render() {
@@ -115,8 +146,10 @@ export default class SortingVisualizer extends React.Component {
                 <>
                     <div className = "header">
                         <label id = "title">Daniel's Sorting Algorithm Visualiser</label>
-                        <button onClick = {() => this.sort()} id = "sort-button">Sort</button>
-                        <button onClick = {() => this.updateAlgo()} id = "select-button">Select Algorithm</button>
+                        <div className = "speed-container">
+                            <label id = "speed-title">Sort Speed:</label><Speed/>
+                        </div>
+                        <button onClick = {() => {this.sort()}} id = "sort-button">Sort</button>
                         <label id = "selected-container">Currently Selected: <label id = "selected-algorithm">{selectedAlgo}</label></label>
                         <button onClick = {() => this.resetArray()} id = "new-array">Generate New Array</button>
                         <div className = "slider-container">
@@ -126,7 +159,7 @@ export default class SortingVisualizer extends React.Component {
                     </div>
                     <div className = "array-container">
                         {array.map((value, idx) => (
-                            <div className = "array-bar" value = {value} key = {idx} style = {{height: `${value}%`, width: width, marginLeft: margin, marginRight: margin, color: color}}>{value}</div>
+                            <div className = "array-bar" value = {value} key = {idx} style = {{height: `${value}%`, width: width, marginLeft: margin, marginRight: margin, color: color}}/>
                         ))}
                     </div>
                     <div className = "footer">
@@ -157,6 +190,7 @@ export default class SortingVisualizer extends React.Component {
 
     /* Compares the javascript sorted array to the algorithm sorted array */
 
+    // eslint-disable-next-line
     function arraysAreEqual(sortedArray, stateArray) {
         if(sortedArray.length !== stateArray.length) {
             return false;
@@ -172,19 +206,37 @@ export default class SortingVisualizer extends React.Component {
 
     /* Returns the arrayMax variable */
 
-    export function getValue() {
+    export function getArraySize() {
         return arrayMax;
     }
 
     /* Checks incoming variable is within the array size limits and applies it */
 
-    export function setNewValue(newValue) {
+    export function setArraySize(newValue) {
         if(newValue < arrayMin) {
              tempMax = arrayMin;
         } else if(newValue > 175) {
             tempMax = 175;
         } else {
             tempMax = newValue;
+        }
+    }
+
+    /* Returns the animationSpeed variable */
+
+    export function getSpeed() {
+        return animationSpeed;
+    }
+
+    /* Checks incoming variable is within the speed limits and applies it */
+
+    export function setSpeed(newValue) {
+        if(newValue < 1) {
+            tempSpeed = 1;
+        } else if(newValue > 15) {
+            tempSpeed = 15;
+        } else {
+            tempSpeed = newValue;
         }
     }
 

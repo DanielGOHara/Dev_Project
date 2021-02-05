@@ -1,12 +1,12 @@
-import mergeSort from './mergeSort';
+import { getMergeSortAnimations } from './mergeSort';
 
-export default function sortingAlgorithms(selectedAlgorithm, array) {
-    let sortedArray = [];
+/* Function to redirect the program to the desired algorithm file and returns the animated array */
+
+export function getSortedAlgo(selectedAlgorithm, array) {
     switch(selectedAlgorithm) {
         case 'MergeSort':
-            sortedArray = mergeSort(array);
             console.log("MergeSort");
-            break;
+            return getMergeSortAnimations(array);
         case 'QuickSort':
             console.log("QuickSort");
             break;
@@ -34,5 +34,4 @@ export default function sortingAlgorithms(selectedAlgorithm, array) {
         default:
             console.log("Default");
     }
-    return array;
 }
