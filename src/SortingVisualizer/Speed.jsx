@@ -6,12 +6,14 @@ import Input from '@material-ui/core/Input';
 import { getSpeed, setSpeed } from './SortingVisualizer';
 import './SortingStyles.css';
 
+let disable = true;
+
 /* Styling for the slider and input text-box */
 
 const useStyles = makeStyles({
     root: {
-        padding: 10,
-        width: 155,
+        marginLeft: 10,
+        width: 187,
     },
     thumb: {
         background: "black",
@@ -25,7 +27,7 @@ const useStyles = makeStyles({
     input: {
         fontFamily: 'fantasy',
         fontSize: 'large',
-        width: 50,
+        width: 40,
     },
 });
 
@@ -38,29 +40,38 @@ export default function InputSpeed() {
     /* Updates state and value in Sorting Visualizer if the user moves the slider */
 
     const handleSliderChange = (event, newValue) => {
-        setValue(newValue);
-        setSpeed(newValue);
+        if(disable === true) {
+        } else {
+            setValue(newValue);
+            setSpeed(newValue);
+        }
     };
 
     /* Updates state and value in SortingVisualizer if the user enters whats in the text-box */
 
     const handleInputChange = (event) => {
-        setValue(event.target.value === '' ? '' : Number(event.target.value));
-        setSpeed(value);
+        if(disable === true) {
+        } else {
+            setValue(event.target.value === '' ? '' : Number(event.target.value));
+            setSpeed(value);
+        }
     };
 
     /* Updates state and value in SortingVisualizer if the user press off the text-box */
 
     const handleBlur = () => {
-        if(value < 1) {
-            setValue(1);
-            setSpeed(value);
-        } else if(value > 15) {
-            setValue(15);
-            setSpeed(value);
+        if(disable === true) {
         } else {
-            setValue(value);
-            setSpeed(value);
+            if (value < 1) {
+                setValue(1);
+                setSpeed(value);
+            } else if (value > 100) {
+                setValue(100);
+                setSpeed(value);
+            } else {
+                setValue(value);
+                setSpeed(value);
+            }
         }
     };
 
@@ -78,7 +89,7 @@ export default function InputSpeed() {
                         onChange = {handleSliderChange}
                         aria-labelledby = "input-slider"
                         min = {1}
-                        max = {15}
+                        max = {100}
                     />
                 </Grid>
                 <Grid item>
@@ -92,7 +103,7 @@ export default function InputSpeed() {
                         inputProps = {{
                             step: 1,
                             min: 1,
-                            max: 15,
+                            max: 100,
                             type: 'number',
                             'aria-labelledby': 'input-slider',
                         }}
@@ -101,4 +112,8 @@ export default function InputSpeed() {
             </Grid>
         </div>
     );
+}
+
+export function setSpeedDisable(bool) {
+    disable = bool;
 }

@@ -1,5 +1,5 @@
 
-/* No Longer Used */
+/* ----------------------------------------------- No Longer Used -----------------------------------------------------
 
 export const mergeSort = unsortedArray => {
     if (unsortedArray.length === 1) return unsortedArray;
@@ -20,6 +20,8 @@ export const mergeSort = unsortedArray => {
         while(j < secondHalf.length) sortedArray.push(secondHalf[j++]);
         return sortedArray;
 };
+
+ ------------------------------------------------------------------------------------------------------------------- */
 
 /* New function for sorting with animation */
 

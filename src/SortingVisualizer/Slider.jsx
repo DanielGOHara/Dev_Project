@@ -6,6 +6,8 @@ import Input from '@material-ui/core/Input';
 import { getArraySize, setArraySize } from "./SortingVisualizer";
 import './SortingStyles.css';
 
+let disable = true;
+
 /* Styling for the slider and input text-box */
 
 const useStyles = makeStyles({
@@ -25,7 +27,7 @@ const useStyles = makeStyles({
     input: {
         fontFamily: 'fantasy',
         fontSize: 'large',
-        width: 50,
+        width: 45,
     },
 });
 
@@ -38,29 +40,38 @@ export default function InputSlider() {
     /* Updates state and value in Sorting Visualizer if the user moves the slider */
 
     const handleSliderChange = (event, newValue) => {
-        setValue(newValue);
-        setArraySize(newValue);
+        if(disable === true) {
+        } else {
+            setValue(newValue);
+            setArraySize(newValue);
+        }
     };
 
     /* Updates state and value in SortingVisualizer if the user enters whats in the text-box */
 
     const handleInputChange = (event) => {
-        setValue(event.target.value === '' ? '' : Number(event.target.value));
-        setArraySize(value);
+        if(disable === true) {
+        } else {
+            setValue(event.target.value === '' ? '' : Number(event.target.value));
+            setArraySize(value);
+        }
     };
 
     /* Updates state and value in SortingVisualizer if the user press off the text-box */
 
     const handleBlur = () => {
-        if(value < 20) {
-            setValue(20);
-            setArraySize(value);
-        } else if(value > 175) {
-            setValue(175);
-            setArraySize(value);
+        if(disable === true) {
         } else {
-            setValue(value);
-            setArraySize(value);
+            if (value < 20) {
+                setValue(20);
+                setArraySize(value);
+            } else if (value > 175) {
+                setValue(175);
+                setArraySize(value);
+            } else {
+                setValue(value);
+                setArraySize(value);
+            }
         }
     };
 
@@ -101,4 +112,10 @@ export default function InputSlider() {
             </Grid>
         </div>
     );
+}
+
+/* Disables slider functionality */
+
+export function setSliderDisable(bool) {
+    disable = bool;
 }

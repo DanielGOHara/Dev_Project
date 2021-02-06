@@ -44,7 +44,7 @@ html {
     padding: 10px;
     margin: 10px;
     height: 4.0625em;
-    width: 10em;
+    width: 12em;
 
     background-color: gray;
     border: medium solid black;
@@ -54,6 +54,21 @@ html {
 .speed-container #speed-title {
     font-family: Arial;
     font-size: large;
+    font-weight: bold;
+}
+
+.speed-container #speed-p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.speed-container #speed-instructions {
+    padding-top: 5px;
+    display: block;
+    height: 10px;
+
+    font-family: Arial;
+    font-size: xx-small;
     font-weight: bold;
 }
 
@@ -153,7 +168,7 @@ html {
     padding: 10px;
     margin: 10px;
     display: inline-block;
-    height: 55em;
+    height: 58em;
     width: 80%;
 
     background-color: gray;
@@ -190,7 +205,7 @@ html {
 
 .footer #footer-p {
     margin-top: 0;
-    margin-bottom: 1px;
+    margin-bottom: 0;
 }
 
 .footer #mergeSort, .footer #quickSort, .footer #heapSort, .footer #treeSort, .footer #blockSort,
