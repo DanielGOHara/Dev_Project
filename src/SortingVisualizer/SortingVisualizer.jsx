@@ -7,8 +7,7 @@ import { setSliderDisable } from "./Slider";
 import { setSpeedDisable } from './Speed';
 
 let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 10, tempSpeed = animationSpeed, timeOutSpeed = 0;
-let selectedAlgo = "MergeSort";
-let sortedArray = [];
+let selectedAlgo = "QuickSort";
 
 export default class SortingVisualizer extends React.Component {
         constructor(props) {
@@ -28,7 +27,6 @@ export default class SortingVisualizer extends React.Component {
             this.timer();
 
             // eslint-disable-next-line
-            sortedArray = this.state.array.slice().sort((a, b) => a - b);
         }
 
         /* Resets the chart array with a set of new random values, also inserts one 100 value */
@@ -113,27 +111,32 @@ export default class SortingVisualizer extends React.Component {
         /* Changes the bar colours depending on its push, 1 push -> red, 2 push -> black */
 
         animateSorting(animations) {
-            for(let i = 0; i < animations.length; i++) {
+            console.log(animations);
+            if(selectedAlgo === "MergeSort") {
                 const arrayBars = document.getElementsByClassName('array-bar');
-                const isColourChange = i % 3 !== 2;
-                if(isColourChange) {
-                    const [barOne, barTwo] = animations[i];
-                    const barOneStyle = arrayBars[barOne].style;
-                    const barTwoStyle = arrayBars[barTwo].style;
-                    const colour = i % 3 === 0 ? 'red' : 'black';
-                    timeOutSpeed = timeOutSpeed + i * animationSpeed;
-                    setTimeout(() => {
-                        barOneStyle.backgroundColor = colour;
-                        barTwoStyle.backgroundColor = colour;
-                    }, i * animationSpeed);
-                } else {
-                    setTimeout(() => {
-                        const [barOne, newHeight] = animations[i];
+                for (let i = 0; i < animations.length; i++) {
+                    const isColourChange = i % 3 !== 2;
+                    if (isColourChange) {
+                        const [barOne, barTwo] = animations[i];
                         const barOneStyle = arrayBars[barOne].style;
-                        barOneStyle.height = `${newHeight}%`;
-                    }, i * animationSpeed);
+                        const barTwoStyle = arrayBars[barTwo].style;
+                        const colour = i % 3 === 0 ? 'red' : 'black';
+                        timeOutSpeed = timeOutSpeed + i * animationSpeed;
+                        setTimeout(() => {
+                            barOneStyle.backgroundColor = colour;
+                            barTwoStyle.backgroundColor = colour;
+                        }, i * animationSpeed);
+                    } else {
+                        setTimeout(() => {
+                            const [barOne, newHeight] = animations[i];
+                            const barOneStyle = arrayBars[barOne].style;
+                            barOneStyle.height = `${newHeight}%`;
+                        }, i * animationSpeed);
+                    }
+                    timeOutSpeed = i * animationSpeed;
                 }
-                timeOutSpeed = i * animationSpeed;
+            } else {
+
             }
         }
 
@@ -169,7 +172,7 @@ export default class SortingVisualizer extends React.Component {
             const color = array.length < 30 ? "white": "transparent";
             return (
                 <>
-                    <div className = "header">
+                    <header className = "header">
                         <label id = "title">Daniel's Sorting Algorithm Visualiser</label>
                         <div className = "speed-container">
                             <label id = "speed-title">Sort Speed:</label><p id = "speed-p"><label id = "speed-instructions">(1 - Fastest, 100 - Slowest)</label></p><Speed/>
@@ -181,13 +184,13 @@ export default class SortingVisualizer extends React.Component {
                             <label>ArraySize: </label>
                             <Slider/>
                         </div>
-                    </div>
-                    <div className = "array-container">
+                    </header>
+                    <section className = "array-container">
                         {array.map((value, idx) => (
                             <div className = "array-bar" value = {value} key = {idx} style = {{height: `${value}%`, width: width, marginLeft: margin, marginRight: margin, color: color}}/>
                         ))}
-                    </div>
-                    <div className = "footer">
+                    </section>
+                    <footer className = "footer">
                         <label id = "footer-title">Algorithms: </label>
                         <p id = "footer-p">
                             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("MergeSort")} id = "mergeSort">Merge Sort</button>
@@ -200,7 +203,7 @@ export default class SortingVisualizer extends React.Component {
                             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("QuadSort")} id = "quadSort">Quad Sort</button>
                             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("CubeSort")} id = "cubeSort">Cube Sort</button>
                         </p>
-                    </div>
+                    </footer>
                     <label className = "project-details">Daniel O'Hara P2435725 De MontFort University Final Year Project 2021</label>
                 </>
             );
