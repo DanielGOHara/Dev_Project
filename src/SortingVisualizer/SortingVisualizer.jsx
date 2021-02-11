@@ -96,7 +96,6 @@ export default class SortingVisualizer extends React.Component {
             setSpeedDisable(true);
             this.resetArray();
             this.animateSorting(getSortedAlgo(selectedAlgo, this.state.array));
-
         }
 
         /* Disables all user control once the sort button is pressed and re-enables it after the array is sorted */
@@ -112,8 +111,9 @@ export default class SortingVisualizer extends React.Component {
 
         animateSorting(animations) {
             console.log(animations);
-            if(selectedAlgo === "MergeSort") {
-                const arrayBars = document.getElementsByClassName('array-bar');
+            const arrayBars = document.getElementsByClassName('array-bar');
+            let auxiliaryArray = [];
+            if (selectedAlgo === "MergeSort") {
                 for (let i = 0; i < animations.length; i++) {
                     const isColourChange = i % 3 !== 2;
                     if (isColourChange) {
@@ -135,8 +135,49 @@ export default class SortingVisualizer extends React.Component {
                     }
                     timeOutSpeed = i * animationSpeed;
                 }
-            } else {
+            } else if (selectedAlgo === "QuickSort") {
+                for (let i = 0; i < animations.length; i++) {
+                    const [barOne, barTwo, string] = animations[i];
+                    if(animations[i].length > 3) {
+                        auxiliaryArray = animations[i];
+                    } else if (string === "left, right") {
 
+                        let barOneStyle = arrayBars[barOne].style;
+                        let barTwoStyle = arrayBars[barTwo].style;
+                        console.log("left " + barOne);
+                        console.log("right " + barTwo);
+                        setTimeout(() => {
+                            barOneStyle.backgroundColor = 'yellow';
+                            barTwoStyle.backgroundColor = 'blue';
+                        }, i * animationSpeed);
+                    } else if (string === "left") {
+                        console.log("left " + barOne);
+                    } else if (string === "right") {
+                        console.log("right " + barTwo);
+                    } else if (string === "pivot") {
+                        const barOneStyle = arrayBars[barOne].style;
+                        console.log("pivot: " + barOne);
+                        setTimeout(() => {
+                            barOneStyle.backgroundColor = 'green';
+                        }, i * animationSpeed);
+                    } else if (string === "swap" || string === "pivot, right") {
+                        const valueOne = auxiliaryArray[barOne];
+                        const valueTwo = auxiliaryArray[barTwo];
+                        const barOneStyle = arrayBars[barOne].style;
+                        const barTwoStyle = arrayBars[barTwo].style;
+                        setTimeout(() => {
+                            barOneStyle.backgroundColor = 'yellow';
+                            barTwoStyle.backgroundColor = 'blue';
+                            barOneStyle.height = `${valueTwo}%`;
+                            barTwoStyle.height = `${valueOne}%`;
+                            if(valueOne < valueTwo) {
+                                console.log(true);
+                            }
+                            console.log("swap " + valueOne + " with " + valueTwo);
+                        }, i * animationSpeed);
+                    }
+                    timeOutSpeed = i * animationSpeed;
+                }
             }
         }
 

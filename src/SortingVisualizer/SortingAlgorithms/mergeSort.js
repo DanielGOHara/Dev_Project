@@ -26,8 +26,7 @@ export const mergeSort = unsortedArray => {
 /* New function for sorting with animation */
 
 export function getMergeSortAnimations(array) {
-        const animations = [];
-        const auxiliaryArray = array.slice();
+        const auxiliaryArray = array.slice(), animations = [];
 
         /* Check if the array is equal to or less than one and return it that is the true */
 
