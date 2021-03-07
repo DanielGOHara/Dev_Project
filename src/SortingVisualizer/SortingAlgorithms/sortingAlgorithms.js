@@ -1,5 +1,6 @@
 import { getMergeSortAnimations } from './mergeSort';
 import { getQuickSortAnimations } from "./quickSort";
+import { getHeapSortAnimations } from "./heapSort";
 
 /* Function to redirect the program to the desired algorithm file and returns the animated array */
 
@@ -13,7 +14,7 @@ export function getSortedAlgo(selectedAlgorithm, array) {
             return getQuickSortAnimations(array);
         case 'HeapSort':
             console.log("HeapSort");
-            break;
+            return getHeapSortAnimations(array);
         case 'TreeSort':
             console.log("TreeSort");
             break;

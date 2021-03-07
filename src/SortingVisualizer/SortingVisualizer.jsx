@@ -7,7 +7,7 @@ import { setSliderDisable } from "./Slider";
 import { setSpeedDisable } from './Speed';
 
 let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 10, tempSpeed = animationSpeed, timeOutSpeed = 0;
-let selectedAlgo = "QuickSort";
+let selectedAlgo = "HeapSort";
 
 export default class SortingVisualizer extends React.Component {
         constructor(props) {
@@ -141,7 +141,6 @@ export default class SortingVisualizer extends React.Component {
                     if(animations[i].length > 3) {
                         auxiliaryArray = animations[i];
                     } else if (string === "left, right") {
-
                         let barOneStyle = arrayBars[barOne].style;
                         let barTwoStyle = arrayBars[barTwo].style;
                         console.log("left " + barOne);
@@ -177,6 +176,10 @@ export default class SortingVisualizer extends React.Component {
                         }, i * animationSpeed);
                     }
                     timeOutSpeed = i * animationSpeed;
+                }
+            } else if (selectedAlgo === "HeapSort") {
+                for (let i = 0; i < animations.length; i++) {
+
                 }
             }
         }
