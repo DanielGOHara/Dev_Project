@@ -38,5 +38,4 @@ export function getQuickSortAnimations(array) {
         }
         quickSortHelper(auxiliaryArray, startIdx, right - 1, animations);
         quickSortHelper(auxiliaryArray, right + 1, endIdx, animations);
-
     }

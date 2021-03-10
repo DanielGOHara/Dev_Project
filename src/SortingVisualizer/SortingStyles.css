@@ -208,7 +208,7 @@ html {
     margin-bottom: 0;
 }
 
-.footer #mergeSort, .footer #quickSort, .footer #heapSort, .footer #treeSort, .footer #blockSort,
+.footer #mergeSort, .footer #quickSort, .footer #heapSort, .footer #bubbleSort, .footer #blockSort,
 .footer #timSort, .footer #shellSort, .footer #quadSort, .footer #cubeSort {
     padding: 10px;
     margin: 10px;

@@ -240,12 +240,7 @@ export default class SortingVisualizer extends React.Component {
                             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("MergeSort")} id = "mergeSort">Merge Sort</button>
                             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("QuickSort")} id = "quickSort">Quick Sort</button>
                             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("HeapSort")} id = "heapSort">Heap Sort</button>
-                            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("TreeSort")} id = "treeSort">Tree Sort</button>
-                            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("BlockSort")} id = "blockSort">Block Sort</button>
-                            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("TimSort")} id = "timSort">Tim Sort</button>
-                            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("ShellSort")} id = "shellSort">Shell Sort</button>
-                            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("QuadSort")} id = "quadSort">Quad Sort</button>
-                            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("CubeSort")} id = "cubeSort">Cube Sort</button>
+                            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("BubbleSort")} id = "bubbleSort">Bubble Sort</button>
                         </p>
                     </footer>
                     <label className = "project-details">Daniel O'Hara P2435725 De MontFort University Final Year Project 2021</label>
