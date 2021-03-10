@@ -26,63 +26,63 @@ export const mergeSort = unsortedArray => {
 /* New function for sorting with animation */
 
 export function getMergeSortAnimations(array) {
-        const auxiliaryArray = array.slice(), animations = [];
+  const auxiliaryArray = array.slice(), animations = [];
 
-        /* Check if the array is equal to or less than one and return it that is the true */
+  /* Check if the array is equal to or less than one and return it that is the true */
 
-        if (array.length <= 1) return array;
+  if (array.length <= 1) return array;
 
-        mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
+  mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
 
-        return animations;
+  return animations;
+}
+
+function mergeSortHelper(mainArray, startIdx, endIdx, auxiliaryArray, animations) {
+  const middleIdx = Math.floor((startIdx + endIdx) / 2);
+
+  /* Check if the first index matches the last index and return nothing if it does */
+
+  if (startIdx === endIdx) return;
+
+  mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
+  mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
+  doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
+}
+
+function doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations,) {
+  let k = startIdx;
+  let i = startIdx;
+  let j = middleIdx + 1;
+
+  /* While loop to change bar colour to red, change it back to black, then replace k value with i and j */
+
+  while (i <= middleIdx && j <= endIdx) {
+    animations.push([i, j]);
+    animations.push([i, j]);
+    if (auxiliaryArray[i] <= auxiliaryArray[j]) {
+      animations.push([k, auxiliaryArray[i]]);
+      mainArray[k++] = auxiliaryArray[i++];
+    } else {
+      animations.push([k, auxiliaryArray[j]]);
+      mainArray[k++] = auxiliaryArray[j++];
     }
+  }
 
-    function mergeSortHelper(mainArray, startIdx, endIdx, auxiliaryArray, animations) {
-        const middleIdx = Math.floor((startIdx + endIdx) / 2);
+  /* While loop to change bar colour to red, change it back to black, then replace the k value with i */
 
-        /* Check if the first index matches the last index and return nothing if it does */
+  while (i <= middleIdx) {
+    animations.push([i, i]);
+    animations.push([i, i]);
+    animations.push([k, auxiliaryArray[i]]);
+    mainArray[k++] = auxiliaryArray[i++];
+  }
 
-        if (startIdx === endIdx) return;
+  /* While loop to change bar colour to red, change it back to black, then replace the k value with j */
 
-        mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
-        mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
-        doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
-    }
-
-    function doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations,) {
-        let k = startIdx;
-        let i = startIdx;
-        let j = middleIdx + 1;
-
-        /* While loop to change bar colour to red, change it back to black, then replace k value with i and j */
-
-        while (i <= middleIdx && j <= endIdx) {
-            animations.push([i, j]);
-            animations.push([i, j]);
-            if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-                animations.push([k, auxiliaryArray[i]]);
-                mainArray[k++] = auxiliaryArray[i++];
-            } else {
-                animations.push([k, auxiliaryArray[j]]);
-                mainArray[k++] = auxiliaryArray[j++];
-            }
-        }
-
-        /* While loop to change bar colour to red, change it back to black, then replace the k value with i */
-
-        while (i <= middleIdx) {
-            animations.push([i, i]);
-            animations.push([i, i]);
-            animations.push([k, auxiliaryArray[i]]);
-            mainArray[k++] = auxiliaryArray[i++];
-        }
-
-        /* While loop to change bar colour to red, change it back to black, then replace the k value with j */
-
-        while (j <= endIdx) {
-            animations.push([j, j]);
-            animations.push([j, j]);
-            animations.push([k, auxiliaryArray[j]]);
-            mainArray[k++] = auxiliaryArray[j++];
-        }
-    }
+  while (j <= endIdx) {
+    animations.push([j, j]);
+    animations.push([j, j]);
+    animations.push([k, auxiliaryArray[j]]);
+    mainArray[k++] = auxiliaryArray[j++];
+  }
+}
