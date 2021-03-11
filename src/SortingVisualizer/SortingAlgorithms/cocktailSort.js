@@ -6,7 +6,7 @@ export function getCocktailSortAnimations(array){
 
   /* While loop to keep looping until nothing is swapped implying it is fully sorted */
 
-  while(sorted === true) {
+  while(sorted) {
     sorted = false;
 
     /* For loop to pick up the largest value as it bounces back to the end */
@@ -24,7 +24,7 @@ export function getCocktailSortAnimations(array){
 
     /* If nothing is swapped sorted will be false and thus the loop is broken */
 
-    if (sorted === false)
+    if (!sorted)
       break;
 
     sorted = false;

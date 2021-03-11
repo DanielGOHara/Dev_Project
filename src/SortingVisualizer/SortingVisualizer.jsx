@@ -175,15 +175,15 @@ export default class SortingVisualizer extends React.Component {
         timeOutSpeed = i * animationSpeed;
       }
 
-    /* Animation for HeapSort */
+    /* Animation for HeapSort, BubbleSort and CocktailSort */
 
-    } else if (selectedAlgo === "HeapSort") {
+    } else if (selectedAlgo === "HeapSort" || selectedAlgo === "BubbleSort" || selectedAlgo === "CocktailSort") {
       for (let i = 0; i < animations.length; i++) {
         const [barOne, barTwo, string] = animations[i];
-        if(animations[i].length > 3) {
+        if (animations[i].length > 3) {
           auxiliaryArray = animations[i];
         }
-        if(string === "swap" || string === "0, end") {
+        if (string === "swap" || string === "0, end") {
           const valueOne = auxiliaryArray[barOne];
           const valueTwo = auxiliaryArray[barTwo];
           const barOneStyle = arrayBars[barOne].style;
@@ -197,58 +197,7 @@ export default class SortingVisualizer extends React.Component {
               barOneStyle.backgroundColor = 'black';
               barTwoStyle.backgroundColor = 'black';
             }, i * animationSpeed / animations.length);
-          },i * animationSpeed);
-        }
-        timeOutSpeed = i * animationSpeed;
-      }
-
-    /* Animation for BubbleSort  */
-
-    } else if(selectedAlgo === "BubbleSort") {
-      for (let i = 0; i < animations.length; i++) {
-        const [barOne, barTwo, string] = animations[i];
-        if(animations[i].length > 3) {
-          auxiliaryArray = animations[i];
-        }
-        if (string === "swap") {
-          const valueOne = auxiliaryArray[barOne];
-          const valueTwo = auxiliaryArray[barTwo];
-          const barOneStyle = arrayBars[barOne].style;
-          const barTwoStyle = arrayBars[barTwo].style;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = 'red';
-            barTwoStyle.backgroundColor = 'red';
-            barOneStyle.height = `${valueTwo}%`;
-            barTwoStyle.height = `${valueOne}%`;
-            setTimeout(() => {
-              barOneStyle.backgroundColor = 'black';
-              barTwoStyle.backgroundColor = 'black';
-            }, i * animationSpeed / animations.length);
-          },i * animationSpeed);
-        }
-        timeOutSpeed = i * animationSpeed;
-      }
-    } else if(selectedAlgo === "CocktailSort") {
-      for (let i = 0; i < animations.length; i++) {
-        const [barOne, barTwo, string] = animations[i];
-        if(animations[i].length > 3) {
-          auxiliaryArray = animations[i];
-        }
-        if (string === "swap") {
-          const valueOne = auxiliaryArray[barOne];
-          const valueTwo = auxiliaryArray[barTwo];
-          const barOneStyle = arrayBars[barOne].style;
-          const barTwoStyle = arrayBars[barTwo].style;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = 'red';
-            barTwoStyle.backgroundColor = 'red';
-            barOneStyle.height = `${valueTwo}%`;
-            barTwoStyle.height = `${valueOne}%`;
-            setTimeout(() => {
-              barOneStyle.backgroundColor = 'black';
-              barTwoStyle.backgroundColor = 'black';
-            }, i * animationSpeed / animations.length);
-          },i * animationSpeed);
+          }, i * animationSpeed);
         }
         timeOutSpeed = i * animationSpeed;
       }
