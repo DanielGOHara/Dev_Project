@@ -107,7 +107,7 @@ export default class SortingVisualizer extends React.Component {
     }, timeOutSpeed);
   }
 
-  /* Changes the bar colours depending on its push, 1 push -> red, 2 push -> black */
+  /* Takes the animations array and creates the animation on screen depending on the selected algorithm */
 
   animateSorting(animations) {
     console.log(animations);
@@ -194,6 +194,7 @@ export default class SortingVisualizer extends React.Component {
             }, i * animationSpeed / animations.length);
           },i * animationSpeed);
         }
+        timeOutSpeed = i * animationSpeed;
       }
     }
   }
