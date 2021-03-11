@@ -10,8 +10,6 @@ export function getHeapSortAnimations(array) {
     auxiliaryArray[0] = temp;
     animations.push([0, end, true]);
     animations.push(auxiliaryArray.slice(0));
-    animations.push([]);
-    animations.push([true, end]);
     siftDown(auxiliaryArray, 0, end, animations);
     end--;
   }
@@ -45,7 +43,7 @@ function siftDown(auxiliaryArray, start, end, animations) {
     let temp = auxiliaryArray[swap];
     auxiliaryArray[swap] = auxiliaryArray[start];
     auxiliaryArray[start] = temp;
-    animations.push([start, swap, true]);
+    animations.push([start, swap, "swap"]);
     animations.push(auxiliaryArray.slice(0));
     siftDown(auxiliaryArray, swap, end, animations);
   }

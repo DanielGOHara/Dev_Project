@@ -140,7 +140,8 @@ export default class SortingVisualizer extends React.Component {
         const [barOne, barTwo, string] = animations[i];
         if(animations[i].length > 3) {
           auxiliaryArray = animations[i];
-        } else if (string === "pivot") {
+        }
+        if (string === "pivot") {
           const barOneStyle = arrayBars[barOne].style;
           setTimeout(() => {
             barOneStyle.backgroundColor = 'yellow';
@@ -148,7 +149,8 @@ export default class SortingVisualizer extends React.Component {
               barOneStyle.backgroundColor = 'black'
             }, i * animationSpeed / animations.length);
           }, i * animationSpeed);
-        } else if (string === "swap" || string === "pivot, right") {
+        }
+        if (string === "swap" || string === "pivot, right") {
           const valueOne = auxiliaryArray[barOne];
           const valueTwo = auxiliaryArray[barTwo];
           const barOneStyle = arrayBars[barOne].style;
@@ -177,12 +179,19 @@ export default class SortingVisualizer extends React.Component {
           auxiliaryArray = animations[i];
         }
         if (string === "swap") {
-          console.log("entered");
           const valueOne = auxiliaryArray[barOne];
           const valueTwo = auxiliaryArray[barTwo];
           const barOneStyle = arrayBars[barOne].style;
+          const barTwoStyle = arrayBars[barTwo].style;
           setTimeout(() => {
+            barOneStyle.backgroundColor = 'red';
+            barTwoStyle.backgroundColor = 'red';
             barOneStyle.height = `${valueTwo}%`;
+            barTwoStyle.height = `${valueOne}%`;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = 'black';
+              barTwoStyle.backgroundColor = 'black';
+            }, i * animationSpeed / animations.length);
           },i * animationSpeed);
         }
       }

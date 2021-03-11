@@ -23,7 +23,7 @@ export const mergeSort = unsortedArray => {
 
  ------------------------------------------------------------------------------------------------------------------- */
 
-/* New function for sorting with animation */
+/* Function for sorting with merge sort animation */
 
 export function getMergeSortAnimations(array) {
   const auxiliaryArray = array.slice(), animations = [];
@@ -32,24 +32,24 @@ export function getMergeSortAnimations(array) {
 
   if (array.length <= 1) return array;
 
-  mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
+  mergeSort(array, 0, array.length - 1, auxiliaryArray, animations);
 
   return animations;
 }
 
-function mergeSortHelper(mainArray, startIdx, endIdx, auxiliaryArray, animations) {
+function mergeSort(mainArray, startIdx, endIdx, auxiliaryArray, animations) {
   const middleIdx = Math.floor((startIdx + endIdx) / 2);
 
   /* Check if the first index matches the last index and return nothing if it does */
 
   if (startIdx === endIdx) return;
 
-  mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
-  mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
+  mergeSort(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
+  mergeSort(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
   doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
 }
 
-function doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations,) {
+function doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations) {
   let k = startIdx;
   let i = startIdx;
   let j = middleIdx + 1;

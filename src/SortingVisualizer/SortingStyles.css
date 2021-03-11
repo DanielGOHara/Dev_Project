@@ -9,6 +9,10 @@ html {
     background-color: darkgray;
 }
 
+body {
+    font-family: Arial, serif;
+}
+
 /* Header elements ------------------------------------------------------------------------------------------------- */
 
 .header {
@@ -31,7 +35,6 @@ html {
     width: 5em;
     justify-content: center;
 
-    font-family: Arial;
     font-size: small;
     font-weight: bold;
 
@@ -52,7 +55,6 @@ html {
 }
 
 .speed-container #speed-title {
-    font-family: Arial;
     font-size: large;
     font-weight: bold;
 }
@@ -67,7 +69,6 @@ html {
     display: block;
     height: 10px;
 
-    font-family: Arial;
     font-size: xx-small;
     font-weight: bold;
 }
@@ -79,7 +80,6 @@ html {
     height: 5.056em;
     width: 5.056em;
 
-    font-family: Arial;
     font-size: large;
     font-weight: bold;
 
@@ -95,7 +95,6 @@ html {
     height: 5.056em;
     width: 7em;
 
-    font-family: Arial;
     font-size: large;
     font-weight: bold;
 
@@ -111,7 +110,6 @@ html {
     height: 3.6114em;
     width: 7em;
 
-    font-family: Arial;
     font-size: large;
     font-weight: bold;
 
@@ -127,7 +125,6 @@ html {
     height: 5.056em;
     width: 6em;
 
-    font-family: Arial;
     font-size: large;
     font-weight: bold;
 
@@ -153,7 +150,6 @@ html {
     height: 3.6115em;
     width: 15em;
 
-    font-family: Arial;
     font-size: large;
     font-weight: bold;
 
@@ -198,7 +194,6 @@ html {
 }
 
 .footer #footer-title {
-    font-family: Arial;
     font-size: larger;
     font-weight: bold;
 }
@@ -216,7 +211,6 @@ html {
     height: 3.6114em;
     width: 5em;
 
-    font-family: Arial;
     font-size: large;
     font-weight: bold;
 
@@ -238,7 +232,6 @@ html {
 }
 
 .footer #footer-details {
-    font-family: Arial;
     font-size: small;
     font-weight: bold;
 }
