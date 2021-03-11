@@ -6,8 +6,8 @@ import { getSortedAlgo } from "./SortingAlgorithms/sortingAlgorithms";
 import { setSliderDisable } from "./Slider";
 import { setSpeedDisable } from './Speed';
 
-let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 10, tempSpeed = animationSpeed, timeOutSpeed = 0;
-let selectedAlgo = "CocktailSort";
+let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 1, tempSpeed = animationSpeed, timeOutSpeed = 0;
+let selectedAlgo = "InsertionSort";
 
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
@@ -201,6 +201,28 @@ export default class SortingVisualizer extends React.Component {
         }
         timeOutSpeed = i * animationSpeed;
       }
+
+    /* Animation for InsertionSort */
+
+    } else if (selectedAlgo === "InsertionSort") {
+      for (let i = 0; i < animations.length; i++) {
+        const [barOne, barTwo, string] = animations[i];
+        if (animations[i].length > 3) {
+          auxiliaryArray = animations[i];
+        }
+        if (string === "swap") {
+          const valueOne = auxiliaryArray[barOne];
+          const barTwoStyle = arrayBars[barTwo].style;
+          setTimeout(() => {
+            barTwoStyle.backgroundColor = 'red';
+            barTwoStyle.height = `${valueOne}%`;
+            setTimeout(() => {
+              barTwoStyle.backgroundColor = 'black';
+            }, i * animationSpeed / animations.length);
+          }, i * animationSpeed);
+        }
+        timeOutSpeed = i * animationSpeed;
+      }
     }
   }
 
@@ -262,6 +284,7 @@ export default class SortingVisualizer extends React.Component {
             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("HeapSort")} id = "heapSort">Heap Sort</button>
             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("BubbleSort")} id = "bubbleSort">Bubble Sort</button>
             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("CocktailSort")} id = "cocktailSort">Cocktail Sort</button>
+            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("InsertionSort")} id = "insertionSort">Insertion Sort</button>
           </p>
         </footer>
         <label className = "project-details">Daniel O'Hara P2435725 De MontFort University Final Year Project 2021</label>

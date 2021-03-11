@@ -203,12 +203,12 @@ body {
     margin-bottom: 0;
 }
 
-.footer #mergeSort, .footer #quickSort, .footer #heapSort, .footer #bubbleSort, .footer #cocktailSort {
+.footer #mergeSort, .footer #quickSort, .footer #heapSort, .footer #bubbleSort, .footer #cocktailSort, .footer #insertionSort {
     padding: 10px;
     margin: 10px;
     display: inline-block;
     height: 3.6114em;
-    width: 5em;
+    width: 6em;
 
     font-size: large;
     font-weight: bold;
