@@ -2,6 +2,7 @@ import { getMergeSortAnimations } from './mergeSort';
 import { getQuickSortAnimations } from "./quickSort";
 import { getHeapSortAnimations } from "./heapSort";
 import { getBubbleSortAnimations } from "./bubbleSort";
+import {getCocktailSortAnimations} from "./cocktailSort";
 
 /* Function to redirect the program to the desired algorithm file and returns the animated array */
 
@@ -15,6 +16,8 @@ export function getSortedAlgo(selectedAlgorithm, array) {
       return getHeapSortAnimations(array);
     case 'BubbleSort':
       return getBubbleSortAnimations(array);
+    case 'CocktailSort':
+      return getCocktailSortAnimations(array);
     default:
       console.log("Default");
   }
