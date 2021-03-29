@@ -9,7 +9,7 @@ import { setSpeedDisable } from './Speed';
 let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 1, tempSpeed = animationSpeed, timeOutSpeed = 0;
 let selectedAlgo = "InsertionSort";
 
-export default class SortingVisualizer extends React.Component {
+export default class SortingVisualiser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -205,24 +205,28 @@ export default class SortingVisualizer extends React.Component {
     /* Animation for InsertionSort */
 
     } else if (selectedAlgo === "InsertionSort") {
-      for (let i = 0; i < animations.length; i++) {
-        const [barOne, barTwo, string] = animations[i];
-        if (animations[i].length > 3) {
-          auxiliaryArray = animations[i];
+        for (let i = 0; i < animations.length; i++) {
+          const [barOne, barTwo, string] = animations[i];
+          if (animations[i].length > 3) {
+            auxiliaryArray = animations[i];
+          }
+          try {
+            if (string === "swap") {
+              const valueTwo = auxiliaryArray[barTwo];
+              const barOneStyle = arrayBars[barOne].style;
+              setTimeout(() => {
+                barOneStyle.backgroundColor = 'red';
+                barOneStyle.height = `${valueTwo}%`;
+                setTimeout(() => {
+                  barOneStyle.backgroundColor = 'black';
+                }, i * animationSpeed / animations.length);
+              }, i * animationSpeed);
+            }
+            timeOutSpeed = i * animationSpeed;
+          } catch {
+            console.log("| Error | BarOne: " + barOne + " BarTwo: " + barTwo);
+          }
         }
-        if (string === "swap") {
-          const valueOne = auxiliaryArray[barOne];
-          const barTwoStyle = arrayBars[barTwo].style;
-          setTimeout(() => {
-            barTwoStyle.backgroundColor = 'red';
-            barTwoStyle.height = `${valueOne}%`;
-            setTimeout(() => {
-              barTwoStyle.backgroundColor = 'black';
-            }, i * animationSpeed / animations.length);
-          }, i * animationSpeed);
-        }
-        timeOutSpeed = i * animationSpeed;
-      }
     }
   }
 

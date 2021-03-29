@@ -8,11 +8,11 @@ export function getInsertionSortAnimations(array) {
     let j = i - 1;
 
     while(j >= 0 && auxiliaryArray[j] > key) {
-      animations.push([j, j + 1, "swap"])
       auxiliaryArray[j + 1] = auxiliaryArray[j];
+      animations.push(auxiliaryArray.slice(0));
+      animations.push([j, j + 1, "swap"]);
       j = j - 1;
     }
-    animations.push(auxiliaryArray.slice(0));
     auxiliaryArray[j + 1] = key;
   }
   return animations;

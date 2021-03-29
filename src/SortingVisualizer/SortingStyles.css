@@ -203,7 +203,8 @@ body {
     margin-bottom: 0;
 }
 
-.footer #mergeSort, .footer #quickSort, .footer #heapSort, .footer #bubbleSort, .footer #cocktailSort, .footer #insertionSort {
+.footer #mergeSort, .footer #quickSort, .footer #heapSort,
+.footer #bubbleSort, .footer #cocktailSort, .footer #insertionSort {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -218,15 +219,13 @@ body {
     border-radius: 5px;
 }
 
-.footer #mergeSort:hover, .footer #quickSort:hover, .footer #heapSort:hover, .footer #treeSort:hover,
-.footer #blockSort:hover, .footer #timSort:hover, .footer #shellSort:hover, .footer #quadSort:hover,
-.footer #cubeSort:hover {
+.footer #mergeSort:hover, .footer #quickSort:hover, .footer #heapSort:hover,
+.footer #bubbleSort:hover, .footer #cocktailSort:hover, .footer #insertionSort:hover {
     background-color: dimgray;
 }
 
-.footer #mergeSort:focus, .footer #quickSort:focus, .footer #heapSort:focus, .footer #treeSort:focus,
-.footer #blockSort:focus, .footer #timSort:focus, .footer #shellSort:focus, .footer #quadSort:focus,
-.footer #cubeSort:focus {
+.footer #mergeSort, .footer #quickSort, .footer #heapSort,
+.footer #bubbleSort, .footer #cocktailSort, .footer #insertionSort {
     outline: none;
 }
 
@@ -236,7 +235,6 @@ body {
 }
 
 .project-details {
-    font-family: Arial;
     font-size: large;
     font-weight: bold;
 }
