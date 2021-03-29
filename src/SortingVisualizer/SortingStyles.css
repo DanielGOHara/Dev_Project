@@ -15,16 +15,23 @@ body {
 
 /* Header elements ------------------------------------------------------------------------------------------------- */
 
-.header {
+.headerContainer {
     padding-bottom: 10px;
     margin-bottom: 10px;
-    display: inline-flex;
-    height: 10%;
+    display: flex;
+    flex-direction: column;
+    height: 12%;
     width: 100%;
     justify-content: center;
 
     background-color: gray;
     border-bottom: medium solid black;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .header #title {
@@ -141,6 +148,15 @@ body {
     outline: none;
 }
 
+.algorithmInfo {
+    padding: 5px;
+    justify-content: center;
+
+    font-size: large;
+    font-weight: bold;
+
+}
+
 /* Slider Elements ------------------------------------------------------------------------------------------------- */
 
 .slider-container {
@@ -169,6 +185,7 @@ body {
 
     background-color: gray;
     border: medium solid black;
+    border-radius: 5px;
 }
 
 .array-bar {
@@ -193,7 +210,8 @@ body {
     border-bottom: medium solid black;
 }
 
-.footer #footer-title {
+.footer #footer-title, .footer #spaceTimeTitle {
+    text-decoration: underline;
     font-size: larger;
     font-weight: bold;
 }

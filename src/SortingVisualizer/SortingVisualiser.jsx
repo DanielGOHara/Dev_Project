@@ -2,6 +2,7 @@ import React from 'react';
 import './SortingStyles.css';
 import Slider from './Slider';
 import Speed from './Speed';
+import { data } from './algorithmData'
 import { getSortedAlgo } from "./SortingAlgorithms/sortingAlgorithms";
 import { setSliderDisable } from "./Slider";
 import { setSpeedDisable } from './Speed';
@@ -25,6 +26,7 @@ export default class SortingVisualiser extends React.Component {
   componentDidMount() {
     this.resetArray();
     this.timer();
+    this.updateAlgo("InsertionSort")
 
     // eslint-disable-next-line
   }
@@ -57,9 +59,17 @@ export default class SortingVisualiser extends React.Component {
     this.setState({array});
   }
 
-  /* Updates the selectedAlgo variable */
+  /* Updates the selectedAlgo variable and the space complexity information */
 
   updateAlgo(newAlgo) {
+    for(let i = 0; i < data.length; i++) {
+      if(newAlgo === data[i].algorithm) {
+        document.getElementById('worstPerf').innerHTML = data[i].worstPerformance;
+        document.getElementById('bestPerf').innerHTML = data[i].bestPerformance;
+        document.getElementById('averagePerf').innerHTML = data[i].averagePerformance;
+        document.getElementById('worstSpace').innerHTML = data[i].worstSpaceComplex;
+      }
+    }
     selectedAlgo = newAlgo;
     this.setState({selectedAlgo});
   }
@@ -262,18 +272,20 @@ export default class SortingVisualiser extends React.Component {
     const color = array.length < 30 ? "white": "transparent";
     return (
       <>
-        <header className = "header">
-          <label id = "title">Daniel's Sorting Algorithm Visualiser</label>
-          <div className = "speed-container">
-            <label id = "speed-title">Sort Speed:</label><p id = "speed-p"><label id = "speed-instructions">(1 - Fastest, 100 - Slowest)</label></p><Speed/>
-          </div>
-          <button disabled = {this.state.isDisabled} onClick = {() => {this.sort(); this.onChange()}} id = "sort-button">Sort</button>
-          <label id = "selected-container">Currently Selected: <label id = "selected-algorithm">{selectedAlgo}</label></label>
-          <button disabled = {this.state.isDisabled} onClick = {() => this.resetArray()} id = "new-array">Generate New Array</button>
-          <div className = "slider-container">
-            <label>ArraySize: </label>
-            <Slider/>
-          </div>
+        <header className = "headerContainer">
+          <section className = "header">
+            <label id = "title">Daniel's Sorting Algorithm Visualiser</label>
+            <div className = "speed-container">
+              <label id = "speed-title">Sort Speed:</label><p id = "speed-p"><label id = "speed-instructions">(1 - Fastest, 100 - Slowest)</label></p><Speed/>
+            </div>
+            <button disabled = {this.state.isDisabled} onClick = {() => {this.sort(); this.onChange()}} id = "sort-button">Sort</button>
+            <label id = "selected-container">Currently Selected: <label id = "selected-algorithm">{selectedAlgo}</label></label>
+            <button disabled = {this.state.isDisabled} onClick = {() => this.resetArray()} id = "new-array">Generate New Array</button>
+            <div className = "slider-container">
+              <label>ArraySize: </label>
+              <Slider/>
+            </div>
+          </section>
         </header>
         <section className = "array-container">
           {array.map((value, idx) => (
@@ -290,6 +302,13 @@ export default class SortingVisualiser extends React.Component {
             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("CocktailSort")} id = "cocktailSort">Cocktail Sort</button>
             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("InsertionSort")} id = "insertionSort">Insertion Sort</button>
           </p>
+          <label id = "spaceTimeTitle">Space Time Complexity: </label><br></br><br></br>
+          <span className = "algorithmInfo">
+            Worst Performance: <label id = "worstPerf"></label>
+            | Best Performance: <label id = "bestPerf"></label><br></br>
+            Average Performance: <label id = "averagePerf"></label>
+            | Worse Space Complexity: <label id = "worstSpace"></label>
+          </span>
         </footer>
         <label className = "project-details">Daniel O'Hara P2435725 De MontFort University Final Year Project 2021</label>
       </>
