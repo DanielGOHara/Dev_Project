@@ -5,6 +5,7 @@ import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import { getArraySize, setArraySize } from "./SortingVisualiser";
 import './SortingStyles.css';
+import {withStyles} from "@material-ui/core";
 
 let disable = true;
 
@@ -17,6 +18,9 @@ const useStyles = makeStyles({
   },
   thumb: {
     background: "black",
+    '&:focus, &:hover, &$active': {
+      boxShadow: 'inherit',
+    },
   },
   rail: {
     background: "black",

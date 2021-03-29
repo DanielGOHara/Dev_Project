@@ -1,4 +1,6 @@
 
+/* Exported variable that stores in JSON format information on each algorithms space complexity */
+
 export const data = [{
   "algorithm" : "MergeSort",
   "worstPerformance" : "O(n log n). ",

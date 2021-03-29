@@ -17,6 +17,9 @@ const useStyles = makeStyles({
   },
   thumb: {
     background: "black",
+    '&:focus, &:hover, &$active': {
+      boxShadow: 'inherit',
+    },
   },
   rail: {
     background: "black",
