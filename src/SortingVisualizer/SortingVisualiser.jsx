@@ -185,7 +185,7 @@ export default class SortingVisualiser extends React.Component {
         timeOutSpeed = i * animationSpeed;
       }
 
-    /* Animation for HeapSort, BubbleSort and CocktailSort */
+    /* Animation for HeapSort, BubbleSort, CocktailSort and InsertionSort */
 
     } else if (selectedAlgo === "HeapSort" || selectedAlgo === "BubbleSort" ||
                selectedAlgo === "CocktailSort" || selectedAlgo === "InsertionSort") {
