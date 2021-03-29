@@ -187,7 +187,8 @@ export default class SortingVisualiser extends React.Component {
 
     /* Animation for HeapSort, BubbleSort and CocktailSort */
 
-    } else if (selectedAlgo === "HeapSort" || selectedAlgo === "BubbleSort" || selectedAlgo === "CocktailSort") {
+    } else if (selectedAlgo === "HeapSort" || selectedAlgo === "BubbleSort" ||
+               selectedAlgo === "CocktailSort" || selectedAlgo === "InsertionSort") {
       for (let i = 0; i < animations.length; i++) {
         const [barOne, barTwo, string] = animations[i];
         if (animations[i].length > 3) {
@@ -211,32 +212,6 @@ export default class SortingVisualiser extends React.Component {
         }
         timeOutSpeed = i * animationSpeed;
       }
-
-    /* Animation for InsertionSort */
-
-    } else if (selectedAlgo === "InsertionSort") {
-        for (let i = 0; i < animations.length; i++) {
-          const [barOne, barTwo, string] = animations[i];
-          if (animations[i].length > 3) {
-            auxiliaryArray = animations[i];
-          }
-          try {
-            if (string === "swap") {
-              const valueTwo = auxiliaryArray[barTwo];
-              const barOneStyle = arrayBars[barOne].style;
-              setTimeout(() => {
-                barOneStyle.backgroundColor = 'red';
-                barOneStyle.height = `${valueTwo}%`;
-                setTimeout(() => {
-                  barOneStyle.backgroundColor = 'black';
-                }, i * animationSpeed / animations.length);
-              }, i * animationSpeed);
-            }
-            timeOutSpeed = i * animationSpeed;
-          } catch {
-            console.log("| Error | BarOne: " + barOne + " BarTwo: " + barTwo);
-          }
-        }
     }
   }
 
@@ -282,7 +257,7 @@ export default class SortingVisualiser extends React.Component {
             <label id = "selected-container">Currently Selected: <label id = "selected-algorithm">{selectedAlgo}</label></label>
             <button disabled = {this.state.isDisabled} onClick = {() => this.resetArray()} id = "new-array">Generate New Array</button>
             <div className = "slider-container">
-              <label>ArraySize: </label>
+              <label>Array Size: </label>
               <Slider/>
             </div>
           </section>
@@ -302,12 +277,13 @@ export default class SortingVisualiser extends React.Component {
             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("CocktailSort")} id = "cocktailSort">Cocktail Sort</button>
             <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("InsertionSort")} id = "insertionSort">Insertion Sort</button>
           </p>
-          <label id = "spaceTimeTitle">Space Time Complexity: </label><br></br><br></br>
+          <label id = "spaceTimeTitle">Time Complexit</label><label id = "spaceComplexityTitle">y: (Learn More: <a
+          href = "https://en.wikipedia.org/wiki/Time_complexity" id = "spaceComplexityLink">Here</a>)</label><br/><br/>
           <span className = "algorithmInfo">
-            Worst Performance: <label id = "worstPerf"></label>
-            | Best Performance: <label id = "bestPerf"></label><br></br>
-            Average Performance: <label id = "averagePerf"></label>
-            | Worse Space Complexity: <label id = "worstSpace"></label>
+            Worst Performance: <label id = "worstPerf"/>
+            | Best Performance: <label id = "bestPerf"/><br/>
+            Average Performance: <label id = "averagePerf"/>
+            | Worse Space Complexity: <label id = "worstSpace"/>
           </span>
         </footer>
         <label className = "project-details">Daniel O'Hara P2435725 De MontFort University Final Year Project 2021</label>

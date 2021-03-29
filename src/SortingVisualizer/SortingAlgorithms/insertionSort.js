@@ -12,7 +12,6 @@ export function getInsertionSortAnimations(array) {
       animations.push(auxiliaryArray.slice(0));
       animations.push([j + 1, j, "swap"]);
       j = j - 1;
-      animations.push([j - 1, j, "swap"]);
     }
     auxiliaryArray[j + 1] = key;
   }

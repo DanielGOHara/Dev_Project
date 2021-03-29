@@ -190,6 +190,7 @@ body {
 
 .array-bar {
     display: inline-block;
+    text-align: center;
 
     background-color: black;
 }
@@ -210,10 +211,16 @@ body {
     border-bottom: medium solid black;
 }
 
-.footer #footer-title, .footer #spaceTimeTitle {
+.footer #footer-title, footer #spaceTimeTitle {
     text-decoration: underline;
     font-size: larger;
     font-weight: bold;
+}
+
+.footer #spaceComplexityTitle, .footer #spaceComplexityLink {
+    font-size: large;
+    font-weight: bold;
+    color: black;
 }
 
 .footer #footer-p {
