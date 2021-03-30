@@ -15,23 +15,18 @@ body {
 
 /* Header elements ------------------------------------------------------------------------------------------------- */
 
-.headerContainer {
+.header {
     padding-bottom: 10px;
     margin-bottom: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 12%;
     width: 100%;
+    text-align: center;
     justify-content: center;
 
     background-color: gray;
     border-bottom: medium solid black;
-}
-
-.header {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
 }
 
 .header #title {
@@ -45,33 +40,31 @@ body {
     font-size: small;
     font-weight: bold;
 
-    background-color: gray;
     border: medium solid black;
     border-radius: 5px;
 }
 
-.speed-container {
+.speedContainer {
     padding: 10px;
     margin: 10px;
     height: 4.0625em;
     width: 12em;
 
-    background-color: gray;
     border: medium solid black;
     border-radius: 5px;
 }
 
-.speed-container #speed-title {
+.speedContainer #speedTitle {
     font-size: large;
     font-weight: bold;
 }
 
-.speed-container #speed-p {
+.speedContainer #speedP {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.speed-container #speed-instructions {
+.speedContainer #speedInstructions {
     padding-top: 5px;
     display: block;
     height: 10px;
@@ -80,7 +73,7 @@ body {
     font-weight: bold;
 }
 
-.header #sort-button {
+.header #sortButton {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -95,7 +88,7 @@ body {
     border-radius: 5px;
 }
 
-.header #select-button {
+.header #selectButton {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -105,12 +98,11 @@ body {
     font-size: large;
     font-weight: bold;
 
-    background-color: gray;
     border: medium solid black;
     border-radius: 5px;
 }
 
-.header #selected-container {
+.header #selectedContainer {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -120,12 +112,11 @@ body {
     font-size: large;
     font-weight: bold;
 
-    background-color: gray;
     border: medium solid black;
     border-radius: 5px;
 }
 
-.header #new-array {
+.header #newArray {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -140,26 +131,18 @@ body {
     border-radius: 5px;
 }
 
-.header #sort-button:hover, .header #select-button:hover, .header #new-array:hover {
+.header #sortButton:hover, .header #selectButton:hover, .header #newArray:hover {
     background-color: dimgray;
+    cursor: pointer;
 }
 
-.header #sort-button:focus, .header #select-button:focus, .header #new-array:focus {
+.header #sortButton:focus, .header #selectButton:focus, .header #newArray:focus {
     outline: none;
-}
-
-.algorithmInfo {
-    padding: 5px;
-    justify-content: center;
-
-    font-size: large;
-    font-weight: bold;
-
 }
 
 /* Slider Elements ------------------------------------------------------------------------------------------------- */
 
-.slider-container {
+.sliderContainer {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -176,19 +159,25 @@ body {
 
 /* Array/Chart Elements -------------------------------------------------------------------------------------------- */
 
-.array-container {
+.arrayContent {
+    text-align: center;
+    justify-content: center;
+}
+
+.arrayContainer {
     padding: 10px;
     margin: 10px;
     display: inline-block;
     height: 58em;
     width: 80%;
+    text-align: center;
 
     background-color: gray;
     border: medium solid black;
     border-radius: 5px;
 }
 
-.array-bar {
+.arrayBar {
     display: inline-block;
     text-align: center;
 
@@ -208,22 +197,13 @@ body {
 
     background-color: gray;
     border-top: medium solid black;
-    border-bottom: medium solid black;
 }
 
-.footer #footer-title, footer #spaceTimeTitle {
-    text-decoration: underline;
-    font-size: larger;
-    font-weight: bold;
+.footer #footerContent {
+    text-align: center;
 }
 
-.footer #spaceComplexityTitle, .footer #spaceComplexityLink {
-    font-size: large;
-    font-weight: bold;
-    color: black;
-}
-
-.footer #footer-p {
+.footer #footerP {
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -247,6 +227,7 @@ body {
 .footer #mergeSort:hover, .footer #quickSort:hover, .footer #heapSort:hover,
 .footer #bubbleSort:hover, .footer #cocktailSort:hover, .footer #insertionSort:hover {
     background-color: dimgray;
+    cursor: pointer;
 }
 
 .footer #mergeSort, .footer #quickSort, .footer #heapSort,
@@ -254,12 +235,50 @@ body {
     outline: none;
 }
 
-.footer #footer-details {
+.footer #footerDetails {
     font-size: small;
     font-weight: bold;
 }
 
-.project-details {
+.projectDetails {
     font-size: large;
     font-weight: bold;
+}
+
+.footer #footerTitle, footer #timeTitle, .footer #algorithmCodeTitle {
+    text-decoration: underline;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.footer #timeComplexityTitle, .footer #timeComplexityLink, .footer #algorithmCodeTitle {
+    font-size: large;
+    font-weight: bold;
+    color: black;
+}
+
+.footer #timeComplexityLink:hover {
+    color: darkgray;
+}
+
+.algorithmInfo {
+    padding: 5px;
+    justify-content: center;
+
+    font-size: large;
+    font-weight: bold;
+
+}
+
+.footer #algorithmCode {
+    left: 30%;
+    margin-right: 30%;
+
+    font-size: medium;
+    font-weight: bold;
+}
+
+.projectDetails {
+    text-align: center;
+    justify-content: center;
 }

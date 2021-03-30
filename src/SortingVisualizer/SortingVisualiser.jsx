@@ -1,9 +1,9 @@
 import React from 'react';
-import './SortingStyles.css';
+import './css/sortingStyles.css';
 import Slider from './Slider';
 import Speed from './Speed';
-import { data } from './algorithmData'
-import { getSortedAlgo } from "./SortingAlgorithms/sortingAlgorithms";
+import { data } from './sortingAlgorithms/algorithmData'
+import { getSortedAlgo } from "./sortingAlgorithms/sortingAlgorithms";
 import { setSliderDisable } from "./Slider";
 import { setSpeedDisable } from './Speed';
 
@@ -17,6 +17,7 @@ export default class SortingVisualiser extends React.Component {
       array: [],
       String: "",
       isDisabled: false,
+      sorted: false,
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -26,9 +27,7 @@ export default class SortingVisualiser extends React.Component {
   componentDidMount() {
     this.resetArray();
     this.timer();
-    this.updateAlgo("InsertionSort")
-
-    // eslint-disable-next-line
+    this.updateAlgo(selectedAlgo)
   }
 
   /* Resets the chart array with a set of new random values, also inserts one 100 value */
@@ -57,6 +56,7 @@ export default class SortingVisualiser extends React.Component {
       array[index] = 100;
     }
     this.setState({array});
+    this.state.sorted = false;
   }
 
   /* Updates the selectedAlgo variable and the space complexity information */
@@ -71,6 +71,7 @@ export default class SortingVisualiser extends React.Component {
       }
     }
     selectedAlgo = newAlgo;
+    this.returnCode();
     this.setState({selectedAlgo});
   }
 
@@ -104,8 +105,12 @@ export default class SortingVisualiser extends React.Component {
   sort() {
     setSliderDisable(true);
     setSpeedDisable(true);
-    this.resetArray();
-    this.animateSorting(getSortedAlgo(selectedAlgo, this.state.array));
+    if(this.state.sorted === true) {
+      this.resetArray();
+      this.animateSorting(getSortedAlgo(selectedAlgo, this.state.array));
+    } else {
+      this.animateSorting(getSortedAlgo(selectedAlgo, this.state.array));
+    }
   }
 
   /* Disables all user control once the sort button is pressed and re-enables it after the array is sorted */
@@ -117,11 +122,18 @@ export default class SortingVisualiser extends React.Component {
     }, timeOutSpeed);
   }
 
+  returnCode() {
+    for(let i = 0; i < data.length; i++) {
+      if(selectedAlgo === data[i].algorithm) {
+        document.getElementById('algorithmCode').innerHTML = data[i].code;
+      }
+    }
+  }
+
   /* Takes the animations array and creates the animation on screen depending on the selected algorithm */
 
   animateSorting(animations) {
-    console.log(animations);
-    const arrayBars = document.getElementsByClassName('array-bar');
+    const arrayBars = document.getElementsByClassName('arrayBar');
     let auxiliaryArray = [];
 
     /* Animation for MergeSort */
@@ -189,30 +201,31 @@ export default class SortingVisualiser extends React.Component {
 
     } else if (selectedAlgo === "HeapSort" || selectedAlgo === "BubbleSort" ||
                selectedAlgo === "CocktailSort" || selectedAlgo === "InsertionSort") {
-      for (let i = 0; i < animations.length; i++) {
-        const [barOne, barTwo, string] = animations[i];
-        if (animations[i].length > 3) {
-          auxiliaryArray = animations[i];
-        }
-        if (string === "swap" || string === "0, end") {
-          const valueOne = auxiliaryArray[barOne];
-          const valueTwo = auxiliaryArray[barTwo];
-          const barOneStyle = arrayBars[barOne].style;
-          const barTwoStyle = arrayBars[barTwo].style;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = 'red';
-            barTwoStyle.backgroundColor = 'red';
-            barOneStyle.height = `${valueTwo}%`;
-            barTwoStyle.height = `${valueOne}%`;
+        for (let i = 0; i < animations.length; i++) {
+          const [barOne, barTwo, string] = animations[i];
+          if (animations[i].length > 3) {
+            auxiliaryArray = animations[i];
+          }
+          if (string === "swap" || string === "0, end") {
+            const valueOne = auxiliaryArray[barOne];
+            const valueTwo = auxiliaryArray[barTwo];
+            const barOneStyle = arrayBars[barOne].style;
+            const barTwoStyle = arrayBars[barTwo].style;
             setTimeout(() => {
-              barOneStyle.backgroundColor = 'black';
-              barTwoStyle.backgroundColor = 'black';
-            }, i * animationSpeed / animations.length);
-          }, i * animationSpeed);
+              barOneStyle.backgroundColor = 'red';
+              barTwoStyle.backgroundColor = 'red';
+              barOneStyle.height = `${valueTwo}%`;
+              barTwoStyle.height = `${valueOne}%`;
+              setTimeout(() => {
+                barOneStyle.backgroundColor = 'black';
+                barTwoStyle.backgroundColor = 'black';
+              }, i * animationSpeed / animations.length);
+            }, i * animationSpeed);
+          }
+          timeOutSpeed = i * animationSpeed;
         }
-        timeOutSpeed = i * animationSpeed;
-      }
     }
+    this.state.sorted = true;
   }
 
   render() {
@@ -242,51 +255,52 @@ export default class SortingVisualiser extends React.Component {
                   array.length < 176 ? 1 : 2;
     const margin = `${numMargin}px`;
 
-    /* Reveals the bars value depending on the arrays length */
-
-    const color = array.length < 30 ? "white": "transparent";
     return (
       <>
-        <header className = "headerContainer">
-          <section className = "header">
-            <label id = "title">Daniel's Sorting Algorithm Visualiser</label>
-            <div className = "speed-container">
-              <label id = "speed-title">Sort Speed:</label><p id = "speed-p"><label id = "speed-instructions">(1 - Fastest, 100 - Slowest)</label></p><Speed/>
-            </div>
-            <button disabled = {this.state.isDisabled} onClick = {() => {this.sort(); this.onChange()}} id = "sort-button">Sort</button>
-            <label id = "selected-container">Currently Selected: <label id = "selected-algorithm">{selectedAlgo}</label></label>
-            <button disabled = {this.state.isDisabled} onClick = {() => this.resetArray()} id = "new-array">Generate New Array</button>
-            <div className = "slider-container">
-              <label>Array Size: </label>
-              <Slider/>
-            </div>
-          </section>
+        <header className = "header">
+          <label id = "title">Daniel's Sorting Algorithm Visualiser</label>
+          <div className = "speedContainer">
+            <label id = "speedTitle">Sort Speed:</label><p id = "speedP"><label id = "speedInstructions">(1 - Fastest, 100 - Slowest)</label></p><Speed/>
+          </div>
+          <button disabled = {this.state.isDisabled} onClick = {() => {this.sort(); this.onChange()}} id = "sortButton">Sort</button>
+          <label id = "selectedContainer">Currently Selected: <label id = "selectedAlgorithm">{selectedAlgo}</label></label>
+          <button disabled = {this.state.isDisabled} onClick = {() => this.resetArray()} id = "newArray">Generate New Array</button>
+          <div className = "sliderContainer">
+            <label>Array Size: </label>
+            <Slider/>
+          </div>
         </header>
-        <section className = "array-container">
-          {array.map((value, idx) => (
-            <div className = "array-bar" value = {value} key = {idx} style = {{height: `${value}%`, width: width, marginLeft: margin, marginRight: margin, color: color}}/>
-          ))}
+        <section className = "arrayContent">
+          <section className = "arrayContainer">
+            {array.map((value, idx) => (
+              <div className = "arrayBar" value = {value} key = {idx} style = {{height: `${value}%`, width: width, marginLeft: margin, marginRight: margin, color: 'black'}}/>
+            ))}
+          </section>
         </section>
         <footer className = "footer">
-          <label id = "footer-title">Algorithms: </label>
-          <p id = "footer-p">
-            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("MergeSort")} id = "mergeSort">Merge Sort</button>
-            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("QuickSort")} id = "quickSort">Quick Sort</button>
-            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("HeapSort")} id = "heapSort">Heap Sort</button>
-            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("BubbleSort")} id = "bubbleSort">Bubble Sort</button>
-            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("CocktailSort")} id = "cocktailSort">Cocktail Sort</button>
-            <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("InsertionSort")} id = "insertionSort">Insertion Sort</button>
-          </p>
-          <label id = "spaceTimeTitle">Time Complexit</label><label id = "spaceComplexityTitle">y: (Learn More: <a
-          href = "https://en.wikipedia.org/wiki/Time_complexity" id = "spaceComplexityLink">Here</a>)</label><br/><br/>
-          <span className = "algorithmInfo">
-            Worst Performance: <label id = "worstPerf"/>
-            | Best Performance: <label id = "bestPerf"/><br/>
-            Average Performance: <label id = "averagePerf"/>
-            | Worse Space Complexity: <label id = "worstSpace"/>
-          </span>
+          <section id = "footerContent">
+            <label id = "footerTitle">Algorithms: </label>
+            <p id = "footerP">
+              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("MergeSort")} id = "mergeSort">Merge Sort</button>
+              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("QuickSort")} id = "quickSort">Quick Sort</button>
+              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("HeapSort")} id = "heapSort">Heap Sort</button>
+              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("BubbleSort")} id = "bubbleSort">Bubble Sort</button>
+              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("CocktailSort")} id = "cocktailSort">Cocktail Sort</button>
+              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("InsertionSort")} id = "insertionSort">Insertion Sort</button>
+            </p>
+            <label id = "timeTitle">Time Complexit</label><label id = "timeComplexityTitle">y: (Learn More: <a
+            href = "https://en.wikipedia.org/wiki/Time_complexity" target = "_blank" id = "timeComplexityLink" >Here</a>)</label><br/><br/>
+            <span className = "algorithmInfo">
+              Worst Performance: <label id = "worstPerf"/>
+              | Best Performance: <label id = "bestPerf"/><br/>
+              Average Performance: <label id = "averagePerf"/>
+              | Worse Space Complexity: <label id = "worstSpace"/>
+            </span><br/><br/>
+            <label id = "algorithmCodeTitle">Algorithm Code: </label><br/>
+          </section>
+          <span id = "algorithmCode"></span><br/><br/>
+          <label className = "projectDetails">Daniel O'Hara P2435725 De Montfort University Final Year Project 2021</label>
         </footer>
-        <label className = "project-details">Daniel O'Hara P2435725 De MontFort University Final Year Project 2021</label>
       </>
     );
   }

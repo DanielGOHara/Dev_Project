@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import { getSpeed, setSpeed } from './SortingVisualiser';
-import './SortingStyles.css';
+import './css/sortingStyles.css';
 
 let disable = true;
 

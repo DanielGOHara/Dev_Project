@@ -22,11 +22,11 @@ function quickSort(auxiliaryArray, startIdx, endIdx, animations) {
 
   while (right >= left) {
     if (auxiliaryArray[right] < auxiliaryArray[pivot] && auxiliaryArray[left] > auxiliaryArray[pivot]) {
+      animations.push(auxiliaryArray.slice(0));
       animations.push([left, right, "swap"]);
       let temp = auxiliaryArray[right];
       auxiliaryArray[right] = auxiliaryArray[left];
       auxiliaryArray[left] = temp;
-      animations.push(auxiliaryArray.slice(0));
     }
 
     if (auxiliaryArray[right] >= auxiliaryArray[pivot]) right--;
@@ -38,13 +38,12 @@ function quickSort(auxiliaryArray, startIdx, endIdx, animations) {
 
   /* If pivot does not equal the right point it is updated */
 
-  animations.push([pivot, right, "pivot, right"]);
   if (pivot !== right) {
+    animations.push(auxiliaryArray.slice(0));
+    animations.push([pivot, right, "pivot, right"]);
     let temp = auxiliaryArray[right];
     auxiliaryArray[right] = auxiliaryArray[pivot];
     auxiliaryArray[pivot] = temp;
-    animations.push([pivot, right, "pivot, right"]);
-    animations.push(auxiliaryArray.slice(0));
   }
   quickSort(auxiliaryArray, startIdx, right - 1, animations);
   quickSort(auxiliaryArray, right + 1, endIdx, animations);
