@@ -1,11 +1,9 @@
 import React from 'react';
 import './css/sortingStyles.css';
-import Slider from './Slider';
-import Speed from './Speed';
+import Slider, { setSliderDisable } from './Slider';
+import Speed, { setSpeedDisable } from './Speed';
 import { data } from './sortingAlgorithms/algorithmData'
 import { getSortedAlgo } from "./sortingAlgorithms/sortingAlgorithms";
-import { setSliderDisable } from "./Slider";
-import { setSpeedDisable } from './Speed';
 
 let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 1, tempSpeed = animationSpeed, timeOutSpeed = 0;
 let selectedAlgo = "InsertionSort";
@@ -68,10 +66,10 @@ export default class SortingVisualiser extends React.Component {
         document.getElementById('bestPerf').innerHTML = data[i].bestPerformance;
         document.getElementById('averagePerf').innerHTML = data[i].averagePerformance;
         document.getElementById('worstSpace').innerHTML = data[i].worstSpaceComplex;
+        document.getElementById('algorithmCode').innerHTML = data[i].code;
       }
     }
     selectedAlgo = newAlgo;
-    this.returnCode();
     this.setState({selectedAlgo});
   }
 
@@ -120,14 +118,6 @@ export default class SortingVisualiser extends React.Component {
     setTimeout(() => {
       this.setState({isDisabled: false});
     }, timeOutSpeed);
-  }
-
-  returnCode() {
-    for(let i = 0; i < data.length; i++) {
-      if(selectedAlgo === data[i].algorithm) {
-        document.getElementById('algorithmCode').innerHTML = data[i].code;
-      }
-    }
   }
 
   /* Takes the animations array and creates the animation on screen depending on the selected algorithm */
@@ -280,7 +270,7 @@ export default class SortingVisualiser extends React.Component {
         <footer className = "footer">
           <section id = "footerContent">
             <label id = "footerTitle">Algorithms: </label>
-            <p id = "footerP">
+            <p id = "footerButtons">
               <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("MergeSort")} id = "mergeSort">Merge Sort</button>
               <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("QuickSort")} id = "quickSort">Quick Sort</button>
               <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("HeapSort")} id = "heapSort">Heap Sort</button>
@@ -288,18 +278,19 @@ export default class SortingVisualiser extends React.Component {
               <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("CocktailSort")} id = "cocktailSort">Cocktail Sort</button>
               <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("InsertionSort")} id = "insertionSort">Insertion Sort</button>
             </p>
-            <label id = "timeTitle">Time Complexit</label><label id = "timeComplexityTitle">y: (Learn More: <a
-            href = "https://en.wikipedia.org/wiki/Time_complexity" target = "_blank" id = "timeComplexityLink" >Here</a>)</label><br/><br/>
+            <label id = "timeTitle">Time Complexit</label><label id = "timeComplexityTitle">y (Learn More: <a
+            href = "https://en.wikipedia.org/wiki/Time_complexity" target = "_blank" id = "timeComplexityLink" >Here</a>):</label><br/><br/>
             <span className = "algorithmInfo">
               Worst Performance: <label id = "worstPerf"/>
               | Best Performance: <label id = "bestPerf"/><br/>
               Average Performance: <label id = "averagePerf"/>
               | Worse Space Complexity: <label id = "worstSpace"/>
             </span><br/><br/>
-            <label id = "algorithmCodeTitle">Algorithm Code: </label><br/>
+            <label id = "algorithmCodeTitle">Algorithm Code:</label><br/>
           </section>
-          <span id = "algorithmCode"></span><br/><br/>
-          <label className = "projectDetails">Daniel O'Hara P2435725 De Montfort University Final Year Project 2021</label>
+          <section id ="algorithmCodeContainer">
+            <pre><span id = "algorithmCode"/></pre><br/><br/>
+          </section>
         </footer>
       </>
     );

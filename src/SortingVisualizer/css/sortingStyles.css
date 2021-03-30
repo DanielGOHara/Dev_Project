@@ -203,7 +203,7 @@ body {
     text-align: center;
 }
 
-.footer #footerP {
+.footer #footerButtons {
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -251,10 +251,11 @@ body {
     font-weight: bold;
 }
 
-.footer #timeComplexityTitle, .footer #timeComplexityLink, .footer #algorithmCodeTitle {
+.footer #timeComplexityTitle, .footer #timeComplexityLink, .footer #algorithmColon {
     font-size: large;
     font-weight: bold;
     color: black;
+    text-decoration: none;
 }
 
 .footer #timeComplexityLink:hover {
@@ -267,18 +268,30 @@ body {
 
     font-size: large;
     font-weight: bold;
+}
 
+.footer #algorithmCodeContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.footer #algorithmCodeContainer > pre {
+    padding: 10px;
+    float: top;
+
+    border: medium solid black;
+    border-radius: 5px;
 }
 
 .footer #algorithmCode {
-    left: 30%;
-    margin-right: 30%;
+    white-space: pre;
 
     font-size: medium;
     font-weight: bold;
 }
 
 .projectDetails {
+    width: 100%;
     text-align: center;
     justify-content: center;
 }
