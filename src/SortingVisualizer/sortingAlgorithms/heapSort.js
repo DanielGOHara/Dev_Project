@@ -4,7 +4,7 @@ export function getHeapSortAnimations(array) {
   buildMaxHeap(auxiliaryArray, animations);
   let end = auxiliaryArray.length - 1;
 
-  /* While loop used tp extract am element from the heap */
+  /* While loop used to extract am element from the heap */
 
   while (end > 0) {
     animations.push([0, end, "0, end"]);

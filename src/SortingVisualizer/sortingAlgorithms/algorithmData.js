@@ -132,7 +132,7 @@ export const data = [{
     "  buildMaxHeap(auxiliaryArray, animations);\n" +
     "  let end = auxiliaryArray.length - 1;\n" +
     "\n" +
-    "  /* While loop used tp extract am element from the heap */\n" +
+    "  /* While loop used to extract am element from the heap */\n" +
     "\n" +
     "  while (end > 0) {\n" +
     "    animations.push([0, end, \"0, end\"]);\n" +

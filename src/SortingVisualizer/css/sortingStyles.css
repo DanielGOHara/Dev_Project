@@ -10,6 +10,10 @@ html {
 }
 
 body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     font-family: Arial, serif;
 }
 
@@ -168,7 +172,7 @@ body {
     padding: 10px;
     margin: 10px;
     display: inline-block;
-    height: 58em;
+    height: 50em;
     width: 80%;
     text-align: center;
 
@@ -184,19 +188,26 @@ body {
     background-color: black;
 }
 
+.barValues {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    width: 80%;
+    text-align: center;
+}
+
 /* Footer elements ------------------------------------------------------------------------------------------------- */
 
 .footer {
     padding-top: 10px;
-    padding-bottom: 10px;
     margin-top: 10px;
-    margin-bottom: 10px;
     height: 100%;
     width: 100%;
-    justify-content: center;
+    bottom: 0;
 
     background-color: gray;
     border-top: medium solid black;
+    border-bottom: medium solid black;
 }
 
 .footer #footerContent {
@@ -275,10 +286,11 @@ body {
     justify-content: center;
 }
 
-.footer #algorithmCodeContainer > pre {
+.footer #pre {
     padding: 10px;
     float: top;
 
+    background-color: darkgray;
     border: medium solid black;
     border-radius: 5px;
 }

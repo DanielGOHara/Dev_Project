@@ -6,7 +6,7 @@ import { data } from './sortingAlgorithms/algorithmData'
 import { getSortedAlgo } from "./sortingAlgorithms/sortingAlgorithms";
 
 let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 1, tempSpeed = animationSpeed, timeOutSpeed = 0;
-let selectedAlgo = "InsertionSort";
+let selectedAlgo = "QuickSort";
 
 export default class SortingVisualiser extends React.Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export default class SortingVisualiser extends React.Component {
       array[index] = 100;
     }
     this.setState({array});
-    this.state.sorted = false;
+    this.setState({sorted: false});
   }
 
   /* Updates the selectedAlgo variable and the space complexity information */
@@ -123,6 +123,7 @@ export default class SortingVisualiser extends React.Component {
   /* Takes the animations array and creates the animation on screen depending on the selected algorithm */
 
   animateSorting(animations) {
+    console.log(animations)
     const arrayBars = document.getElementsByClassName('arrayBar');
     let auxiliaryArray = [];
 
@@ -168,7 +169,7 @@ export default class SortingVisualiser extends React.Component {
             }, i * animationSpeed / animations.length);
           }, i * animationSpeed);
         }
-        if (string === "swap" || string === "pivot, right") {
+        if (string === "swap") {
           const valueOne = auxiliaryArray[barOne];
           const valueTwo = auxiliaryArray[barTwo];
           const barOneStyle = arrayBars[barOne].style;
@@ -215,7 +216,7 @@ export default class SortingVisualiser extends React.Component {
           timeOutSpeed = i * animationSpeed;
         }
     }
-    this.state.sorted = true;
+    this.setState({sorted: true});
   }
 
   render() {
@@ -271,15 +272,15 @@ export default class SortingVisualiser extends React.Component {
           <section id = "footerContent">
             <label id = "footerTitle">Algorithms: </label>
             <p id = "footerButtons">
-              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("MergeSort")} id = "mergeSort">Merge Sort</button>
-              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("QuickSort")} id = "quickSort">Quick Sort</button>
-              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("HeapSort")} id = "heapSort">Heap Sort</button>
-              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("BubbleSort")} id = "bubbleSort">Bubble Sort</button>
-              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("CocktailSort")} id = "cocktailSort">Cocktail Sort</button>
-              <button disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("InsertionSort")} id = "insertionSort">Insertion Sort</button>
+              <button data-testid = "mergeSort" disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("MergeSort")} id = "mergeSort">Merge Sort</button>
+              <button data-testid = "quickSort" disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("QuickSort")} id = "quickSort">Quick Sort</button>
+              <button data-testid = "heapSort" disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("HeapSort")} id = "heapSort">Heap Sort</button>
+              <button data-testid = "bubbleSort" disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("BubbleSort")} id = "bubbleSort">Bubble Sort</button>
+              <button data-testid = "cocktailSort" disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("CocktailSort")} id = "cocktailSort">Cocktail Sort</button>
+              <button data-testid = "insertionSort" disabled = {this.state.isDisabled} onClick = {() => this.updateAlgo("InsertionSort")} id = "insertionSort">Insertion Sort</button>
             </p>
             <label id = "timeTitle">Time Complexit</label><label id = "timeComplexityTitle">y (Learn More: <a
-            href = "https://en.wikipedia.org/wiki/Time_complexity" target = "_blank" id = "timeComplexityLink" >Here</a>):</label><br/><br/>
+            href = "https://en.wikipedia.org/wiki/Time_complexity" target = "_blank" rel = "noreferrer" id = "timeComplexityLink" >Here</a>):</label><br/><br/>
             <span className = "algorithmInfo">
               Worst Performance: <label id = "worstPerf"/>
               | Best Performance: <label id = "bestPerf"/><br/>
@@ -289,7 +290,7 @@ export default class SortingVisualiser extends React.Component {
             <label id = "algorithmCodeTitle">Algorithm Code:</label><br/>
           </section>
           <section id ="algorithmCodeContainer">
-            <pre><span id = "algorithmCode"/></pre><br/><br/>
+            <pre id = "pre"><span id = "algorithmCode"/></pre><br/><br/>
           </section>
         </footer>
       </>
