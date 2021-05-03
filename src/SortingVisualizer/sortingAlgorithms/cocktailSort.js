@@ -11,7 +11,7 @@ export function getCocktailSortAnimations(array){
 
     /* For loop to pick up the largest value as it bounces back to the end */
 
-    for (let i = start; i < end - 1; i++) {
+    for (let i = start; i < end; i++) {
       if (auxiliaryArray[i] > auxiliaryArray[i + 1]) {
         animations.push([i, i + 1, "swap"])
         let temp = auxiliaryArray[i];

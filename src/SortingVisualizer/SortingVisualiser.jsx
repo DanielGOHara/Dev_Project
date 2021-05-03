@@ -5,8 +5,8 @@ import Speed, { setSpeedDisable } from './Speed';
 import { data } from './sortingAlgorithms/algorithmData'
 import { getSortedAlgo } from "./sortingAlgorithms/sortingAlgorithms";
 
-let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 1, tempSpeed = animationSpeed, timeOutSpeed = 0;
-let selectedAlgo = "QuickSort";
+let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 10, tempSpeed = animationSpeed, timeOutSpeed = 0;
+let selectedAlgo = "MergeSort";
 
 export default class SortingVisualiser extends React.Component {
   constructor(props) {
@@ -23,9 +23,9 @@ export default class SortingVisualiser extends React.Component {
   /* When the app is opened this is called */
 
   componentDidMount() {
-    this.resetArray();
     this.timer();
-    this.updateAlgo(selectedAlgo)
+    this.updateAlgo(selectedAlgo);
+    this.resetArray();
   }
 
   /* Resets the chart array with a set of new random values, also inserts one 100 value */
@@ -262,6 +262,7 @@ export default class SortingVisualiser extends React.Component {
           </div>
         </header>
         <section className = "arrayContent">
+          <h2 id = "screenWidthError">Application not supported on screen width sizes of 1150px or below</h2>
           <section className = "arrayContainer">
             {array.map((value, idx) => (
               <div className = "arrayBar" value = {value} key = {idx} style = {{height: `${value}%`, width: width, marginLeft: margin, marginRight: margin, color: 'black'}}/>

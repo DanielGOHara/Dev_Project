@@ -1,25 +1,47 @@
 
 html {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 
-    background-color: darkgray;
+  background-color: darkgray;
 }
 
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, serif;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, serif;
 }
 
-/* Header elements ------------------------------------------------------------------------------------------------- */
-
 .header {
+  display: none;
+}
+
+.arrayContent {
+  text-align: center;
+  justify-content: center;
+}
+
+.arrayContent #screenWidthError {
+  margin-top: 32%;
+  Display: block;
+}
+
+.arrayContainer {
+  display: none;
+}
+
+.footer {
+  display: none;
+}
+
+
+@media screen and (min-width: 1150px) {
+
+  /* Header elements ------------------------------------------------------------------------------------------------- */
+  .header {
     padding-bottom: 10px;
     margin-bottom: 10px;
     display: flex;
@@ -31,9 +53,9 @@ body {
 
     background-color: gray;
     border-bottom: medium solid black;
-}
+  }
 
-.header #title {
+  .header #title {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -46,9 +68,9 @@ body {
 
     border: medium solid black;
     border-radius: 5px;
-}
+  }
 
-.speedContainer {
+  .speedContainer {
     padding: 10px;
     margin: 10px;
     height: 4.0625em;
@@ -56,28 +78,28 @@ body {
 
     border: medium solid black;
     border-radius: 5px;
-}
+  }
 
-.speedContainer #speedTitle {
+  .speedContainer #speedTitle {
     font-size: large;
     font-weight: bold;
-}
+  }
 
-.speedContainer #speedP {
+  .speedContainer #speedP {
     margin-top: 0;
     margin-bottom: 0;
-}
+  }
 
-.speedContainer #speedInstructions {
+  .speedContainer #speedInstructions {
     padding-top: 5px;
     display: block;
     height: 10px;
 
     font-size: xx-small;
     font-weight: bold;
-}
+  }
 
-.header #sortButton {
+  .header #sortButton {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -90,9 +112,9 @@ body {
     background-color: gray;
     border: medium solid black;
     border-radius: 5px;
-}
+  }
 
-.header #selectButton {
+  .header #selectButton {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -104,9 +126,9 @@ body {
 
     border: medium solid black;
     border-radius: 5px;
-}
+  }
 
-.header #selectedContainer {
+  .header #selectedContainer {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -118,9 +140,9 @@ body {
 
     border: medium solid black;
     border-radius: 5px;
-}
+  }
 
-.header #newArray {
+  .header #newArray {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -133,20 +155,20 @@ body {
     background-color: gray;
     border: medium solid black;
     border-radius: 5px;
-}
+  }
 
-.header #sortButton:hover, .header #selectButton:hover, .header #newArray:hover {
+  .header #sortButton:hover, .header #selectButton:hover, .header #newArray:hover {
     background-color: dimgray;
     cursor: pointer;
-}
+  }
 
-.header #sortButton:focus, .header #selectButton:focus, .header #newArray:focus {
+  .header #sortButton:focus, .header #selectButton:focus, .header #newArray:focus {
     outline: none;
-}
+  }
 
-/* Slider Elements ------------------------------------------------------------------------------------------------- */
+  /* Slider Elements ------------------------------------------------------------------------------------------------- */
 
-.sliderContainer {
+  .sliderContainer {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -159,68 +181,67 @@ body {
     background-color: gray;
     border: medium solid black;
     border-radius: 5px;
-}
+  }
 
-/* Array/Chart Elements -------------------------------------------------------------------------------------------- */
+  /* Array/Chart Elements -------------------------------------------------------------------------------------------- */
 
-.arrayContent {
-    text-align: center;
-    justify-content: center;
-}
+  .arrayContent #screenWidthError {
+    Display: none;
+  }
 
-.arrayContainer {
+  .arrayContainer {
     padding: 10px;
     margin: 10px;
     display: inline-block;
     height: 50em;
-    width: 80%;
+    width: 90%;
     text-align: center;
 
     background-color: gray;
     border: medium solid black;
     border-radius: 5px;
-}
+  }
 
-.arrayBar {
+  .arrayBar {
     display: inline-block;
     text-align: center;
 
     background-color: black;
-}
+  }
 
-.barValues {
+  .barValues {
     padding: 10px;
     margin: 10px;
     display: inline-block;
     width: 80%;
     text-align: center;
-}
+  }
 
-/* Footer elements ------------------------------------------------------------------------------------------------- */
-
-.footer {
+  /* Footer elements ------------------------------------------------------------------------------------------------- */
+  .footer {
     padding-top: 10px;
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
     bottom: 0;
 
     background-color: gray;
     border-top: medium solid black;
-    border-bottom: medium solid black;
-}
+  }
 
-.footer #footerContent {
+  .footer #footerContent {
     text-align: center;
-}
+  }
 
-.footer #footerButtons {
+  .footer #footerButtons {
     margin-top: 0;
     margin-bottom: 0;
-}
+  }
 
-.footer #mergeSort, .footer #quickSort, .footer #heapSort,
-.footer #bubbleSort, .footer #cocktailSort, .footer #insertionSort {
+  .footer #mergeSort, .footer #quickSort, .footer #heapSort,
+  .footer #bubbleSort, .footer #cocktailSort, .footer #insertionSort {
     padding: 10px;
     margin: 10px;
     display: inline-block;
@@ -233,77 +254,78 @@ body {
     background-color: gray;
     border: medium solid black;
     border-radius: 5px;
-}
+  }
 
-.footer #mergeSort:hover, .footer #quickSort:hover, .footer #heapSort:hover,
-.footer #bubbleSort:hover, .footer #cocktailSort:hover, .footer #insertionSort:hover {
+  .footer #mergeSort:hover, .footer #quickSort:hover, .footer #heapSort:hover,
+  .footer #bubbleSort:hover, .footer #cocktailSort:hover, .footer #insertionSort:hover {
     background-color: dimgray;
     cursor: pointer;
-}
+  }
 
-.footer #mergeSort, .footer #quickSort, .footer #heapSort,
-.footer #bubbleSort, .footer #cocktailSort, .footer #insertionSort {
+  .footer #mergeSort, .footer #quickSort, .footer #heapSort,
+  .footer #bubbleSort, .footer #cocktailSort, .footer #insertionSort {
     outline: none;
-}
+  }
 
-.footer #footerDetails {
+  .footer #footerDetails {
     font-size: small;
     font-weight: bold;
-}
+  }
 
-.projectDetails {
+  .projectDetails {
     font-size: large;
     font-weight: bold;
-}
+  }
 
-.footer #footerTitle, footer #timeTitle, .footer #algorithmCodeTitle {
+  .footer #footerTitle, footer #timeTitle, .footer #algorithmCodeTitle {
     text-decoration: underline;
     font-size: larger;
     font-weight: bold;
-}
+  }
 
-.footer #timeComplexityTitle, .footer #timeComplexityLink, .footer #algorithmColon {
+  .footer #timeComplexityTitle, .footer #timeComplexityLink, .footer #algorithmColon {
     font-size: large;
     font-weight: bold;
     color: black;
     text-decoration: none;
-}
+  }
 
-.footer #timeComplexityLink:hover {
+  .footer #timeComplexityLink:hover {
     color: darkgray;
-}
+  }
 
-.algorithmInfo {
+  .algorithmInfo {
     padding: 5px;
     justify-content: center;
 
     font-size: large;
     font-weight: bold;
-}
+  }
 
-.footer #algorithmCodeContainer {
+  .footer #algorithmCodeContainer {
     display: flex;
     justify-content: center;
-}
+  }
 
-.footer #pre {
+  .footer #pre {
     padding: 10px;
     float: top;
 
     background-color: darkgray;
     border: medium solid black;
     border-radius: 5px;
-}
+  }
 
-.footer #algorithmCode {
+  .footer #algorithmCode {
     white-space: pre;
 
     font-size: medium;
     font-weight: bold;
-}
+  }
 
-.projectDetails {
+  .projectDetails {
     width: 100%;
     text-align: center;
     justify-content: center;
+  }
 }

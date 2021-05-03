@@ -90,33 +90,35 @@ export const data = [{
     "\n" +
     "  let pivot = startIdx, left = startIdx + 1, right = endIdx;\n" +
     "  animations.push([pivot, 0, \"pivot\"]);\n" +
+    "  animations.push(auxiliaryArray.slice(0));\n" +
+    "  animations.push([pivot, startIdx, \"swap\"]);\n" +
+    "  animations.push([right, endIdx, \"swap\"]);\n" +
     "\n" +
     "  /* Once the right point is less than the left, the while loop is broken */\n" +
     "\n" +
     "  while (right >= left) {\n" +
     "    if (auxiliaryArray[right] < auxiliaryArray[pivot] && auxiliaryArray[left] > auxiliaryArray[pivot]) {\n" +
-    "      animations.push(auxiliaryArray.slice(0));\n" +
     "      animations.push([left, right, \"swap\"]);\n" +
     "      let temp = auxiliaryArray[right];\n" +
     "      auxiliaryArray[right] = auxiliaryArray[left];\n" +
     "      auxiliaryArray[left] = temp;\n" +
+    "      animations.push(auxiliaryArray.slice(0));\n" +
     "    }\n" +
     "\n" +
     "    if (auxiliaryArray[right] >= auxiliaryArray[pivot]) right--;\n" +
     "\n" +
     "    if (auxiliaryArray[left] <= auxiliaryArray[pivot]) left++;\n" +
     "\n" +
-    "    if (right >= left) animations.push([left, right, \"left right\"]);\n" +
-    "  }\n" +
+    "    }\n" +
     "\n" +
     "  /* If pivot does not equal the right point it is updated */\n" +
     "\n" +
     "  if (pivot !== right) {\n" +
-    "    animations.push(auxiliaryArray.slice(0));\n" +
-    "    animations.push([pivot, right, \"pivot, right\"]);\n" +
     "    let temp = auxiliaryArray[right];\n" +
     "    auxiliaryArray[right] = auxiliaryArray[pivot];\n" +
     "    auxiliaryArray[pivot] = temp;\n" +
+    "    animations.push([pivot, right, \"swap\"]);\n" +
+    "    animations.push(auxiliaryArray.slice(0));\n" +
     "  }\n" +
     "  quickSort(auxiliaryArray, startIdx, right - 1, animations);\n" +
     "  quickSort(auxiliaryArray, right + 1, endIdx, animations);\n" +
