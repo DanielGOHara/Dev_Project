@@ -6,7 +6,7 @@ import { data } from './sortingAlgorithms/algorithmData'
 import { getSortedAlgo } from "./sortingAlgorithms/sortingAlgorithms";
 
 let arrayMax = 100, arrayMin = 20, tempMax = arrayMax, animationSpeed = 10, tempSpeed = animationSpeed, timeOutSpeed = 0;
-let selectedAlgo = "MergeSort";
+let selectedAlgo = "QuickSort";
 
 export default class SortingVisualiser extends React.Component {
   constructor(props) {
@@ -123,7 +123,6 @@ export default class SortingVisualiser extends React.Component {
   /* Takes the animations array and creates the animation on screen depending on the selected algorithm */
 
   animateSorting(animations) {
-    console.log(animations)
     const arrayBars = document.getElementsByClassName('arrayBar');
     let auxiliaryArray = [];
 
@@ -143,9 +142,9 @@ export default class SortingVisualiser extends React.Component {
             barTwoStyle.backgroundColor = colour;
           }, i * animationSpeed);
         } else {
+          const [barOne, newHeight] = animations[i];
+          const barOneStyle = arrayBars[barOne].style;
           setTimeout(() => {
-            const [barOne, newHeight] = animations[i];
-            const barOneStyle = arrayBars[barOne].style;
             barOneStyle.height = `${newHeight}%`;
           }, i * animationSpeed);
         }
@@ -197,7 +196,7 @@ export default class SortingVisualiser extends React.Component {
           if (animations[i].length > 3) {
             auxiliaryArray = animations[i];
           }
-          if (string === "swap" || string === "0, end") {
+          if (string === "swap") {
             const valueOne = auxiliaryArray[barOne];
             const valueTwo = auxiliaryArray[barTwo];
             const barOneStyle = arrayBars[barOne].style;

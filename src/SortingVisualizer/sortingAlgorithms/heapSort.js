@@ -7,7 +7,7 @@ export function getHeapSortAnimations(array) {
   /* While loop used to extract am element from the heap */
 
   while (end > 0) {
-    animations.push([0, end, "0, end"]);
+    animations.push([0, end, "swap"]);
     let temp = auxiliaryArray[end];
     auxiliaryArray[end] = auxiliaryArray[0];
     auxiliaryArray[0] = temp;
