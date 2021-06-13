@@ -1,6 +1,6 @@
 # Development_Project
 
-Final Year Development Project - Computing Algorithm Visualiser (Sorting)<br/>
+Final Year Development Project - Computing Algorithm Visualiser (Sorting) - First | 81%<br/>
 
 Javascript Files: `algorithmData.js` | `bubbleSort.js` | `cocktailSort.js` | `heapSort.js` | `insertionSort.js` | `mergeSort.js` | `quickSort.js` | `sortingAlgorithms.js`<br/>
 JSX Files: `Slider.jsx` | `SortingVisualiser.jsx` | `Speed.jsx`<br/>
